@@ -1,0 +1,62 @@
+
+namespace org.healthcare.basic
+
+
+participant Doctor identified by doctorId {
+  o String doctorId
+  o String firstName
+  o String lastName
+}
+
+participant Patient identified by patientId {
+  o String patientId
+  o String firstName
+  o String lastName
+}
+
+asset MedicalInfo identified by medId {
+  --> Patient owner 
+  o String medId
+  o String medication
+  o Visits[] pastVisitsArray
+}
+
+concept Visits {
+  o DateTime visitDate
+  o String procedure
+  o String doctorId
+  o String medicationPrescribed
+}
+
+transaction UpdateMedication {
+  --> MedicalInfo asset 
+  o String newMedication
+}
+
+transaction UpdateVisit {
+  --> MedicalInfo asset 
+  o Visits newVisit
+}
+
+// participant SampleParticipant identified by participantId {
+//   o String participantId
+//   o String firstName
+//   o String lastName
+// }
+
+// asset SampleAsset identified by assetId {
+//   o String assetId
+//   --> SampleParticipant owner
+//   o String value
+// }
+
+// transaction SampleTransaction {
+//   --> SampleAsset asset
+//   o String newValue
+// }
+
+// event SampleEvent {
+//   --> SampleAsset asset
+//   o String oldValue
+//   o String newValue
+// }
