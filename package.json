@@ -3,7 +3,7 @@
     "composer": "^0.20.7"
   },
   "name": "healthcare",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Building a healthcare network for storing medical history",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/healthcare.bna",
