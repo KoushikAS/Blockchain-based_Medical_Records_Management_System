@@ -17,7 +17,7 @@ To start already defined the rest server :
 composer-rest-server -c admin@healthcare -n never -u true -d n -w true
 
 to start the frontend:
-cd healthcare-app\n
+cd healthcare-app
 npm start
 
 to create bna file : composer archive create -t dir -n . 
