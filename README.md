@@ -35,3 +35,7 @@ https://medium.com/coinmonks/getting-started-with-hyperledger-composer-34cb7228d
 https://stackoverflow.com/questions/51975866/hyperledger-composer-cli-ping-to-a-business-network-returns-accessexception/51983081#51983081
 
 https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local-blockchain-network-with-hyperledger-composer/index.html
+
+To run composer-playground: https://localhost:8080 (in incognito mode preferably)
+To run rest services: https://localhost:3000
+To run run frontend: https://localhost:4200
