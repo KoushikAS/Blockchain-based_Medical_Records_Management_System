@@ -31,6 +31,9 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class UpdateVisit extends Transaction {
       asset: MedicalInfo;
-      newVisit: Visits;
+      visitDate: Date;
+      procedure: string;
+      doctorId: string;
+      medicationPrescribed: string;
    }
 // }

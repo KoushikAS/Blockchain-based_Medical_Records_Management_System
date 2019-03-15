@@ -31,13 +31,13 @@ describe('Starting tests for healthcare-app', function() {
     })
   });
 
-  it('network-name should be healthcare@0.0.7',() => {
+  it('network-name should be healthcare@0.0.11',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('healthcare@0.0.7.bna');
+      expect(txt).toBe('healthcare@0.0.11.bna');
     });
   });
 

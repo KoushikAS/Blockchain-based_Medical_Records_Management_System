@@ -5,13 +5,13 @@ Building a healthcare network for storing medical history
 commands:
 
 To intall and run the network  
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.7.bna
-sudo composer network start --networkName healthcare --networkVersion 0.0.7 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.11.bna
+sudo composer network start --networkName healthcare --networkVersion 0.0.11 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 to upgrade the network 
 sudo composer archive create --sourceType dir --sourceName .
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.8.bna
-sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.8
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
+sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.12
 
 To start already defined the rest server :
 composer-rest-server -c admin@healthcare -n never -u true -d n -w true

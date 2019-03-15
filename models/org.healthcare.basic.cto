@@ -35,7 +35,10 @@ transaction UpdateMedication {
 
 transaction UpdateVisit {
   --> MedicalInfo asset 
-  o Visits newVisit
+  o DateTime visitDate
+  o String procedure
+  o String doctorId
+  o String medicationPrescribed
 }
 
 // participant SampleParticipant identified by participantId {

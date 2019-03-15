@@ -33,7 +33,10 @@ export class UpdateVisitComponent implements OnInit {
   private errorMessage;
 
   asset = new FormControl('', Validators.required);
-  newVisit = new FormControl('', Validators.required);
+  visitDate = new FormControl('', Validators.required);
+  procedure = new FormControl('', Validators.required);
+  doctorId = new FormControl('', Validators.required);
+  medicationPrescribed = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
 
@@ -41,7 +44,10 @@ export class UpdateVisitComponent implements OnInit {
   constructor(private serviceUpdateVisit: UpdateVisitService, fb: FormBuilder) {
     this.myForm = fb.group({
       asset: this.asset,
-      newVisit: this.newVisit,
+      visitDate: this.visitDate,
+      procedure: this.procedure,
+      doctorId: this.doctorId,
+      medicationPrescribed: this.medicationPrescribed,
       transactionId: this.transactionId,
       timestamp: this.timestamp
     });
@@ -102,14 +108,20 @@ export class UpdateVisitComponent implements OnInit {
     this.Transaction = {
       $class: 'org.healthcare.basic.UpdateVisit',
       'asset': this.asset.value,
-      'newVisit': this.newVisit.value,
+      'visitDate': this.visitDate.value,
+      'procedure': this.procedure.value,
+      'doctorId': this.doctorId.value,
+      'medicationPrescribed': this.medicationPrescribed.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
     };
 
     this.myForm.setValue({
       'asset': null,
-      'newVisit': null,
+      'visitDate': null,
+      'procedure': null,
+      'doctorId': null,
+      'medicationPrescribed': null,
       'transactionId': null,
       'timestamp': null
     });
@@ -120,7 +132,10 @@ export class UpdateVisitComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'asset': null,
-        'newVisit': null,
+        'visitDate': null,
+        'procedure': null,
+        'doctorId': null,
+        'medicationPrescribed': null,
         'transactionId': null,
         'timestamp': null
       });
@@ -138,7 +153,10 @@ export class UpdateVisitComponent implements OnInit {
     this.Transaction = {
       $class: 'org.healthcare.basic.UpdateVisit',
       'asset': this.asset.value,
-      'newVisit': this.newVisit.value,
+      'visitDate': this.visitDate.value,
+      'procedure': this.procedure.value,
+      'doctorId': this.doctorId.value,
+      'medicationPrescribed': this.medicationPrescribed.value,
       'timestamp': this.timestamp.value
     };
 
@@ -188,7 +206,10 @@ export class UpdateVisitComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'asset': null,
-        'newVisit': null,
+        'visitDate': null,
+        'procedure': null,
+        'doctorId': null,
+        'medicationPrescribed': null,
         'transactionId': null,
         'timestamp': null
       };
@@ -199,10 +220,28 @@ export class UpdateVisitComponent implements OnInit {
         formObject.asset = null;
       }
 
-      if (result.newVisit) {
-        formObject.newVisit = result.newVisit;
+      if (result.visitDate) {
+        formObject.visitDate = result.visitDate;
       } else {
-        formObject.newVisit = null;
+        formObject.visitDate = null;
+      }
+
+      if (result.procedure) {
+        formObject.procedure = result.procedure;
+      } else {
+        formObject.procedure = null;
+      }
+
+      if (result.doctorId) {
+        formObject.doctorId = result.doctorId;
+      } else {
+        formObject.doctorId = null;
+      }
+
+      if (result.medicationPrescribed) {
+        formObject.medicationPrescribed = result.medicationPrescribed;
+      } else {
+        formObject.medicationPrescribed = null;
       }
 
       if (result.transactionId) {
@@ -234,7 +273,10 @@ export class UpdateVisitComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'asset': null,
-      'newVisit': null,
+      'visitDate': null,
+      'procedure': null,
+      'doctorId': null,
+      'medicationPrescribed': null,
       'transactionId': null,
       'timestamp': null
     });
