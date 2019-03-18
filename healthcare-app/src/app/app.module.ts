@@ -28,6 +28,7 @@ import { PatientComponent } from './Patient/Patient.component';
 
 import { UpdateMedicationComponent } from './UpdateMedication/UpdateMedication.component';
 import { UpdateVisitComponent } from './UpdateVisit/UpdateVisit.component';
+import { RestService } from 'services/rest.service';
 
   @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UpdateVisitComponent } from './UpdateVisit/UpdateVisit.component';
     AppRoutingModule
   ],
   providers: [
-    DataService
+    DataService,
+    RestService
   ],
   bootstrap: [AppComponent]
 })

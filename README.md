@@ -14,7 +14,25 @@ sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.
 sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.12
 
 To start already defined the rest server :
-composer-rest-server -c admin@healthcare -n never -u true -d n -w true
+
+sudo composer-rest-server -c admin@healthcare -p 3001
+
+export COMPOSER_PROVIDERS='{
+  "github": {
+    "provider": "github",
+    "module": "passport-github",
+    "clientID": "78d4e9b0bf14b1849738",
+    "clientSecret": "fb5076fa93783b8dd9b7d6ab62f8ebbe9938438e",
+    "authPath": "/auth/github",
+    "callbackURL": "/auth/github/callback",
+    "successRedirect": "http://localhost:4200?loggedIn=true",
+    "failureRedirect": "/"
+  }
+}'
+
+//composer-rest-server -c admin@healthcare -n never -u true -d n -w true
+sudo -E composer-rest-server -c admin@healthcare -n never  -m true -a true
+
 
 to start the frontend:
 cd healthcare-app
@@ -26,7 +44,7 @@ to import the cards : composer card import --file networkadmin.card
 
 to ping the network :composer network ping -c healthcare 
 
-to create a new rest setver 
+to create a new rest server 
 composer-rest-server
 
 Important sites :
