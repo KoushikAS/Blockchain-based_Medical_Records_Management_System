@@ -6,6 +6,7 @@ commands:
 
 To intall and run the network  
 sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.11.bna
+
 sudo composer network start --networkName healthcare --networkVersion 0.0.11 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 
@@ -58,6 +59,10 @@ https://stackoverflow.com/questions/51975866/hyperledger-composer-cli-ping-to-a-
 
 https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local-blockchain-network-with-hyperledger-composer/index.html
 
+https://medium.com/coinmonks/building-a-blockchain-application-using-hyperledger-fabric-with-angular-frontend-part-2-22ef7c77f53
+
 To run composer-playground: https://localhost:8080 (in incognito mode preferably)
+
 To run rest services: https://localhost:3000
+
 To run run frontend: https://localhost:4200
