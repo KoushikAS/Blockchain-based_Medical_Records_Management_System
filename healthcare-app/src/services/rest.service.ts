@@ -69,6 +69,26 @@ export class RestService{
         
                 return this.http.post('http://localhost:3001/api/system/identities/issue', identity, {responseType: 3}).toPromise();  //3 indicates blob which is the required response type
               })
+              .then(function(response) {
+                console.log(response.blob())
+                return response.blob();
+              })
+              .then((cardData) => {
+              console.log('CARD-DATA', cardData);
+                const file = new File([cardData], 'myCard.card', {type: 'application/octet-stream', lastModified: Date.now()});
+        
+                const formData = new FormData();
+                formData.append('card', file);
+                formData.append('name','Patient'+data.id)
+        
+                const headers = new Headers();
+                // headers.set('Content-Type', 'multipart/form-data');
+                // headers.set('boundary','----WebKitFormBoundaryyrV7KO0BoCBuDbTL')
+                return this.http.post('http://localhost:3000/api/wallet/import', formData, {
+                  withCredentials: true,
+                  headers
+                }).toPromise();
+              });
             }
         
 }
