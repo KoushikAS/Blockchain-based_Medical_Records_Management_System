@@ -24,7 +24,7 @@
 
       <section *ngIf="authenticated && !loggedIn">
         <h2>Sign up</h2>
-        <form (ngSubmit)="onSignUpDoctor()" #signupForm="ngForm">
+        <form  #signupForm="ngForm">
           <table>
             <colgroup>
               <col span="1" style="width: 11%;">
@@ -55,10 +55,10 @@
               </td>
             </tr>
           </table>
-          <button type="submit"
+          <button (click)="onSignUpDoctor()" type="submit"
                   class="primary">
             <div *ngIf="!signUpInProgress">
-              <span>Sign up</span>
+              <span>Sign up Doctor</span>
             </div>
             <div *ngIf="signUpInProgress" class="ibm-spinner-indeterminate small loop">
               <div class="loader">
@@ -68,6 +68,21 @@
               </div>
             </div>
           </button>
+
+          <button (click)="onSignUpPatient()" type="submit"
+          class="primary">
+    <div *ngIf="!signUpInProgress">
+      <span>Sign up Patient</span>
+    </div>
+    <div *ngIf="signUpInProgress" class="ibm-spinner-indeterminate small loop">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="circle-path" cx="50" cy="50" r="20"/>
+        </svg>
+      </div>
+    </div>
+  </button>
+
         </form>
       </section>
 
