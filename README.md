@@ -61,6 +61,8 @@ https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local
 
 https://medium.com/coinmonks/building-a-blockchain-application-using-hyperledger-fabric-with-angular-frontend-part-2-22ef7c77f53
 
+https://medium.com/@CazChurchUk/developing-multi-user-application-using-the-hyperledger-composer-rest-server-b3b88e857ccc
+
 To run composer-playground: https://localhost:8080 (in incognito mode preferably)
 
 To run rest services: https://localhost:3000
