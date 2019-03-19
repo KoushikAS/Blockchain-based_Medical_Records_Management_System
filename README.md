@@ -8,14 +8,14 @@ To intall and run the network
 sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.11.bna
 sudo composer network start --networkName healthcare --networkVersion 0.0.11 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
-to upgrade the network :
-sudo composer archive create --sourceType dir --sourceName .
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
-sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.12
 
-To start already defined the rest server :
+To start rest server as admin (To create and issue participants and card) open a new terminal:
 
 sudo composer-rest-server -c admin@healthcare -p 3001
+
+To start rest server in multimode (To do normal operations) open a new terminal:
+
+npm install -g passport-github  (Note: do this once )
 
 export COMPOSER_PROVIDERS='{
   "github": {
@@ -30,11 +30,10 @@ export COMPOSER_PROVIDERS='{
   }
 }'
 
-//composer-rest-server -c admin@healthcare -n never -u true -d n -w true
 sudo -E composer-rest-server -c admin@healthcare -n never  -m true -a true
 
 
-to start the frontend:
+to start the frontend of the app in port 4200 open a new terminal:
 cd healthcare-app
 npm start
 
@@ -43,6 +42,11 @@ to create bna file : composer archive create -t dir -n .
 to import the cards : composer card import --file networkadmin.card
 
 to ping the network :composer network ping -c healthcare 
+
+to upgrade the network :
+sudo composer archive create --sourceType dir --sourceName .
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
+sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.12
 
 to create a new rest server 
 composer-rest-server
