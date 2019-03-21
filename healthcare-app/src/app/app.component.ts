@@ -38,9 +38,9 @@ export class AppComponent implements AfterViewInit {
   };
 
   constructor(private route: ActivatedRoute,
-    private router: Router, private restService: RestService){
+    private router: Router, private restService: RestService) {
 
-    }
+  }
 
 
   ngAfterViewInit() {
@@ -51,24 +51,24 @@ export class AppComponent implements AfterViewInit {
         const loggedIn = queryParams['loggedIn'];
         if (loggedIn) {
           this.authenticated = true;
-          $('.nav a').on('click', function(){
+          $('.nav a').on('click', function () {
             $('.nav').find('.active').removeClass('active');
             $(this).parent().addClass('active');
           });
-      
-          $('.dropdown').on('show.bs.dropdown', function(e){
+
+          $('.dropdown').on('show.bs.dropdown', function (e) {
             $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
           });
-      
-          $('.dropdown').on('hide.bs.dropdown', function(e){
+
+          $('.dropdown').on('hide.bs.dropdown', function (e) {
             $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
           });
-      
-          $('.dropdown-menu li').on('click', function(){
+
+          $('.dropdown-menu li').on('click', function () {
             $(this).parent().parent().addClass('active');
           });
         }
-      });         
+      });
   }
 
 

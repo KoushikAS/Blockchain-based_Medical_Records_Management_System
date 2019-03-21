@@ -28,7 +28,7 @@ export class UpdateMedicationService {
   };
 
   public getAll(): Observable<UpdateMedication[]> {
-      return this.dataService.getAll(this.NAMESPACE);
+    return this.dataService.getAll(this.NAMESPACE);
   }
 
   public getTransaction(id: any): Observable<UpdateMedication> {

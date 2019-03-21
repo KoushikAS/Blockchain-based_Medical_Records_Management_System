@@ -30,7 +30,7 @@ import { UpdateMedicationComponent } from './UpdateMedication/UpdateMedication.c
 import { UpdateVisitComponent } from './UpdateVisit/UpdateVisit.component';
 import { RestService } from 'services/rest.service';
 
-  @NgModule({
+@NgModule({
   declarations: [
     AppComponent,
     HomeComponent,

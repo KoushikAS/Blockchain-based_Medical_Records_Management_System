@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
 import { UpdateVisitComponent } from './UpdateVisit.component';
-import {UpdateVisitService} from './UpdateVisit.service';
+import { UpdateVisitService } from './UpdateVisit.service';
 
 describe('UpdateVisitComponent', () => {
   let component: UpdateVisitComponent;
@@ -38,7 +38,7 @@ describe('UpdateVisitComponent', () => {
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ UpdateVisitComponent ],
+      declarations: [UpdateVisitComponent],
       imports: [
         BrowserModule,
         FormsModule,
@@ -46,8 +46,8 @@ describe('UpdateVisitComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: UpdateVisitService, useValue: mockUpdateVisitService },
-        {provide: DataService, useValue: mockDataService },
+        { provide: UpdateVisitService, useValue: mockUpdateVisitService },
+        { provide: DataService, useValue: mockDataService },
       ]
     });
 

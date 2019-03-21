@@ -15,76 +15,43 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="addTransactionModalLabel">Create Transaction</h4>
         <p class="modal-intro">Enter the required values below.</p>
       </div>
       <form [formGroup]="myForm">
         <div class="modal-body">
+          <div class="form-group text-left">
+            <label for="asset">asset</label>
+            <textarea formControlName="asset" class="form-control" rows="3"></textarea>
+          </div>
 
+          <div class="form-group text-left">
+            <label for="visitDate">visitDate</label>
+            <input formControlName="visitDate" type="text" class="form-control">
+          </div>
 
-          
+          <div class="form-group text-left">
+            <label for="procedure">procedure</label>
+            <input formControlName="procedure" type="text" class="form-control">
+          </div>
 
-            
-              <div class="form-group text-left">
-                <label for="asset">asset</label>
-                
-                    <textarea formControlName="asset" class="form-control" rows="3"></textarea>
-                
-              </div>
-            
-          
+          <div class="form-group text-left">
+            <label for="doctorId">doctorId</label>
+            <input formControlName="doctorId" type="text" class="form-control">
+          </div>
 
-            
-              <div class="form-group text-left">
-                <label for="visitDate">visitDate</label>
-                
-                  <input formControlName="visitDate" type="text" class="form-control">
-                
-              </div>
-            
-          
-
-            
-              <div class="form-group text-left">
-                <label for="procedure">procedure</label>
-                
-                  <input formControlName="procedure" type="text" class="form-control">
-                
-              </div>
-            
-          
-
-            
-              <div class="form-group text-left">
-                <label for="doctorId">doctorId</label>
-                
-                  <input formControlName="doctorId" type="text" class="form-control">
-                
-              </div>
-            
-          
-
-            
-              <div class="form-group text-left">
-                <label for="medicationPrescribed">medicationPrescribed</label>
-                
-                  <input formControlName="medicationPrescribed" type="text" class="form-control">
-                
-              </div>
-            
-          
-
-            
-          
-
-            
-          
+          <div class="form-group text-left">
+            <label for="medicationPrescribed">medicationPrescribed</label>
+            <input formControlName="medicationPrescribed" type="text" class="form-control">
+          </div>
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button (click)="addTransaction(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">Confirm</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button (click)="addTransaction(myForm);" type="submit" class="btn btn-success"
+            data-dismiss="modal">Confirm</button>
         </div>
       </form>
     </div>
@@ -92,13 +59,13 @@
 </div>
 
 <div class="container col-md-6">
-    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-        <strong>Error:</strong> {{errorMessage}}
-    </div>
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    <strong>Error:</strong> {{errorMessage}}
+  </div>
 
   <div class="row">
     <div class="col-md-12">
-        <h1 class="transaction-title" id='transactionName'>UpdateVisit</h1>
+      <h1 class="transaction-title" id='transactionName'>UpdateVisit</h1>
     </div>
   </div>
   <br>
@@ -109,36 +76,16 @@
           When invoked, this transaction will have the following attributes:
           <br>
           <ul>
-            
-              
-                <li><span class="attribute"><b>asset</b></span></li>
-              
-            
-              
-                <li><span class="attribute"><b>visitDate</b></span></li>
-              
-            
-              
-                <li><span class="attribute"><b>procedure</b></span></li>
-              
-            
-              
-                <li><span class="attribute"><b>doctorId</b></span></li>
-              
-            
-              
-                <li><span class="attribute"><b>medicationPrescribed</b></span></li>
-              
-            
-              
-            
-              
-            
+            <li><span class="attribute"><b>asset</b></span></li>
+            <li><span class="attribute"><b>visitDate</b></span></li>
+            <li><span class="attribute"><b>procedure</b></span></li>
+            <li><span class="attribute"><b>doctorId</b></span></li>
+            <li><span class="attribute"><b>medicationPrescribed</b></span></li>
           </ul>
         </div>
       </div>
-      <button (click)="resetForm();" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTransactionModal">Invoke</button>
+      <button (click)="resetForm();" type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#addTransactionModal">Invoke</button>
     </div>
   </div>
 </div>
-

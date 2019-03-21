@@ -54,23 +54,23 @@ export class UpdateMedicationComponent implements OnInit {
   loadAll(): Promise<any> {
     const tempList = [];
     return this.serviceUpdateMedication.getAll()
-    .toPromise()
-    .then((result) => {
-      this.errorMessage = null;
-      result.forEach(transaction => {
-        tempList.push(transaction);
+      .toPromise()
+      .then((result) => {
+        this.errorMessage = null;
+        result.forEach(transaction => {
+          tempList.push(transaction);
+        });
+        this.allTransactions = tempList;
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else if (error === '404 - Not Found') {
+          this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        } else {
+          this.errorMessage = error;
+        }
       });
-      this.allTransactions = tempList;
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
   }
 
 	/**
@@ -115,23 +115,23 @@ export class UpdateMedicationComponent implements OnInit {
     });
 
     return this.serviceUpdateMedication.addTransaction(this.Transaction)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-      this.myForm.setValue({
-        'asset': null,
-        'newMedication': null,
-        'transactionId': null,
-        'timestamp': null
+      .toPromise()
+      .then(() => {
+        this.errorMessage = null;
+        this.myForm.setValue({
+          'asset': null,
+          'newMedication': null,
+          'transactionId': null,
+          'timestamp': null
+        });
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else {
+          this.errorMessage = error;
+        }
       });
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else {
-        this.errorMessage = error;
-      }
-    });
   }
 
   updateTransaction(form: any): Promise<any> {
@@ -143,37 +143,37 @@ export class UpdateMedicationComponent implements OnInit {
     };
 
     return this.serviceUpdateMedication.updateTransaction(form.get('transactionId').value, this.Transaction)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-      this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
+      .toPromise()
+      .then(() => {
+        this.errorMessage = null;
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else if (error === '404 - Not Found') {
+          this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        } else {
+          this.errorMessage = error;
+        }
+      });
   }
 
   deleteTransaction(): Promise<any> {
 
     return this.serviceUpdateMedication.deleteTransaction(this.currentId)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
+      .toPromise()
+      .then(() => {
+        this.errorMessage = null;
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else if (error === '404 - Not Found') {
+          this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        } else {
+          this.errorMessage = error;
+        }
+      });
   }
 
   setId(id: any): void {
@@ -183,52 +183,52 @@ export class UpdateMedicationComponent implements OnInit {
   getForm(id: any): Promise<any> {
 
     return this.serviceUpdateMedication.getTransaction(id)
-    .toPromise()
-    .then((result) => {
-      this.errorMessage = null;
-      const formObject = {
-        'asset': null,
-        'newMedication': null,
-        'transactionId': null,
-        'timestamp': null
-      };
+      .toPromise()
+      .then((result) => {
+        this.errorMessage = null;
+        const formObject = {
+          'asset': null,
+          'newMedication': null,
+          'transactionId': null,
+          'timestamp': null
+        };
 
-      if (result.asset) {
-        formObject.asset = result.asset;
-      } else {
-        formObject.asset = null;
-      }
+        if (result.asset) {
+          formObject.asset = result.asset;
+        } else {
+          formObject.asset = null;
+        }
 
-      if (result.newMedication) {
-        formObject.newMedication = result.newMedication;
-      } else {
-        formObject.newMedication = null;
-      }
+        if (result.newMedication) {
+          formObject.newMedication = result.newMedication;
+        } else {
+          formObject.newMedication = null;
+        }
 
-      if (result.transactionId) {
-        formObject.transactionId = result.transactionId;
-      } else {
-        formObject.transactionId = null;
-      }
+        if (result.transactionId) {
+          formObject.transactionId = result.transactionId;
+        } else {
+          formObject.transactionId = null;
+        }
 
-      if (result.timestamp) {
-        formObject.timestamp = result.timestamp;
-      } else {
-        formObject.timestamp = null;
-      }
+        if (result.timestamp) {
+          formObject.timestamp = result.timestamp;
+        } else {
+          formObject.timestamp = null;
+        }
 
-      this.myForm.setValue(formObject);
+        this.myForm.setValue(formObject);
 
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-      this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else if (error === '404 - Not Found') {
+          this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        } else {
+          this.errorMessage = error;
+        }
+      });
   }
 
   resetForm(): void {

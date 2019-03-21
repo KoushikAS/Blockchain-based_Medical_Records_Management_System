@@ -11,6 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 .container {
     margin-left: 72px;
     margin-right: 32px;
@@ -32,13 +33,14 @@
     margin-top: 5%;
 }
 
-.table > thead > tr > th {
+.table>thead>tr>th {
     border-bottom: 1px solid #EAEAEA;
 }
 
-.table > thead > tr > th.info {
+.table>thead>tr>th.info {
     background: #FFF;
 }
+
 .modal-title {
     font-family: inherit;
     font-size: 24px;
@@ -47,47 +49,52 @@
     line-height: 28px;
     padding-top: 15px;
 }
+
 .modal-intro {
     font-family: inherit;
     font-size: 14px;
     color: #545454;
     line-height: 20px;
     padding-top: 15px;
-
 }
-.modal-header{
+
+.modal-header {
     background: #F4F4F4;
     border-radius: 5px;
     border-bottom: 1px solid #F4F4F4;
 }
-.modal-body{
+
+.modal-body {
     background: #F4F4F4;
     border-radius: 5px;
 }
-.modal-footer{
+
+.modal-footer {
     background: #F4F4F4;
     border-radius: 5px;
     border-top: 1px solid #f4f4f4
 }
-.form-control{
+
+.form-control {
     color: #393939;
     height: 42px;
     border: 1px solid #ffffff;
-    box-shadow: inset 0 0px 0px rgba(0,0,0,.075); 
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
     border-radius: 4px;
     resize: none;
-
 }
+
 label {
     color: #545454;
 }
-.modal-content{
+
+.modal-content {
     margin-top: 15%;
     margin-bottom: 15%;
     box-shadow: 0 0px 0px;
     border: 0px;
-
 }
+
 .btn-default {
     color: #844EF4;
     background-color: #ffffff;
@@ -96,7 +103,8 @@ label {
     width: 76px;
     height: 40px;
 }
-.btn-danger{
+
+.btn-danger {
     color: #ffffff;
     background-color: #844AE4;
     border-color: #844AE4;
@@ -104,10 +112,12 @@ label {
     width: 76px;
     height: 40px;
 }
-.btn-danger:focus{
+
+.btn-danger:focus {
     background-color: #4D21A8;
     border-color: #4D21A8;
 }
+
 .btn-success {
     color: #ffffff;
     background-color: #844AE4;
@@ -116,16 +126,19 @@ label {
     width: 76px;
     height: 40px;
 }
-.btn-success:focus{
+
+.btn-success:focus {
     background-color: #4D21A8;
     border-color: #4D21A8;
 }
-.btn-default:focus{
+
+.btn-default:focus {
     background-color: #fff;
-    border-color: #4d21a8;  
-    color: #4d21a8;      
+    border-color: #4d21a8;
+    color: #4d21a8;
 }
-.transaction-title{
+
+.transaction-title {
     font-family: inherit;
     font-size: 18px;
     color: #4E4E4E;
@@ -135,14 +148,16 @@ label {
     margin-top: 30px;
     margin-left: 20px;
 }
-.info{
+
+.info {
     font-family: inherit;
     font-size: 14px;
     color: #343C41;
     letter-spacing: 0.2px;
     line-height: 24px;
 }
-.info-actions{
+
+.info-actions {
     font-family: inherit;
     font-size: 14px;
     color: #343C41;
@@ -150,7 +165,8 @@ label {
     line-height: 24px;
     padding-left: 24px;
 }
-.transaction-properties{
+
+.transaction-properties {
     font-family: inherit;
     font-size: 14px;
     color: #848484;
@@ -160,7 +176,8 @@ label {
     text-overflow: ellipsis;
     max-width: 250px;
 }
-.plus-svg{
+
+.plus-svg {
     color: #fff;
     fill: currentColor;
 }
@@ -193,6 +210,3 @@ padding: 3px;
 margin-left: -4px;
 }
 ***/
-
-
-
