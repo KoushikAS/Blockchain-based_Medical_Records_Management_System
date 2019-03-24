@@ -22,16 +22,18 @@ import { MedicalInfoComponent } from './MedicalInfo/MedicalInfo.component';
 import { DoctorComponent } from './Doctor/Doctor.component';
 import { PatientComponent } from './Patient/Patient.component';
 
-import { UpdateMedicationComponent } from './UpdateMedication/UpdateMedication.component';
 import { UpdateVisitComponent } from './UpdateVisit/UpdateVisit.component';
+import { GivePermissionComponent } from './GivePermission/GivePermission.component';
+import { RevokePermissionComponent } from './RevokePermission/RevokePermission.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'MedicalInfo', component: MedicalInfoComponent },
   { path: 'Doctor', component: DoctorComponent },
   { path: 'Patient', component: PatientComponent },
-  { path: 'UpdateMedication', component: UpdateMedicationComponent },
   { path: 'UpdateVisit', component: UpdateVisitComponent },
+  { path: 'GivePermission', component: GivePermissionComponent },
+  { path: 'RevokePermission', component: RevokePermissionComponent },
   { path: '**', redirectTo: '' }
 ];
 

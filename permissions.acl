@@ -17,17 +17,10 @@
  */
 rule DoctorPermissions {
     description: "Allow Doctor read and update access to MedicalInfo"
-    participant: "org.healthcare.basic.Doctor"
+    participant(p): "org.healthcare.basic.Doctor"
     operation: READ,UPDATE
-    resource: "org.healthcare.basic.MedicalInfo"
-    action: ALLOW
-}
-
-rule DoctorUpdateMedicationTransactions {
-    description: "Allow Doctor to submit transactions"
-    participant: "org.healthcare.basic.Doctor"
-    operation: CREATE
-    resource: "org.healthcare.basic.UpdateMedication"
+    resource(r): "org.healthcare.basic.MedicalInfo"
+   condition:(r.permissionedDoctorsId.indexOf(p.doctorId)> -1)
     action: ALLOW
 }
 
@@ -36,6 +29,22 @@ rule DoctorUpdateVisitTransactions {
     participant: "org.healthcare.basic.Doctor"
     operation: CREATE
     resource: "org.healthcare.basic.UpdateVisit"
+    action: ALLOW
+}
+
+rule PatientGivePermissionTransactions {
+    description: "Allow Patient to give Permission"
+    participant: "org.healthcare.basic.Patient"
+    operation: CREATE
+    resource: "org.healthcare.basic.GivePermission"
+    action: ALLOW
+}
+
+rule PatientRevokePermissionTransactions {
+    description: "Allow Patient to revoke Permission"
+    participant: "org.healthcare.basic.Patient"
+    operation: CREATE
+    resource: "org.healthcare.basic.RevokePermission"
     action: ALLOW
 }
 
@@ -48,15 +57,39 @@ rule PatientPermissions{
     action: ALLOW
 }
 
+rule PatientPermissionToViewProfile{
+    description: "Allow Petient read and update his profile"
+    participant(p): "org.healthcare.basic.Patient"
+    operation: READ,UPDATE
+    resource(r): "org.healthcare.basic.Patient"
+    condition:(r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
 
-// rule OwnerHasFullAccessToTheirAssets {
-//     description: "Allow all participants full access to their assets"
-//     participant(p): "org.healthcare.basic.Doctor"
-//     operation: ALL
-//     resource(r): "org.healthcare.basic.MedicalInfo"
-//     condition: (r.owner.getIdentifier() === p.getIdentifier())
-//     action: ALLOW
-// }
+rule DoctorPermissionToViewProfile{
+    description: "Allow doctor to read and update his profile"
+    participant(p): "org.healthcare.basic.Doctor"
+    operation: READ,UPDATE
+    resource(r): "org.healthcare.basic.Doctor"
+    condition:(r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule DoctorPermissionToViewPatientsProfile{
+    description: "Allow doctor to read  all patients profile"
+    participant: "org.healthcare.basic.Doctor"
+    operation: READ
+    resource: "org.healthcare.basic.Patient"
+    action: ALLOW
+}
+
+rule PatientPermissionToViewDoctorProfile{
+    description: "Allow patients to read  all doctor profile"
+    participant: "org.healthcare.basic.Patient"
+    operation: READ
+    resource: "org.healthcare.basic.Doctor"
+    action: ALLOW
+}
 
 rule SystemACL {
   description:  "System ACL to permit all access"

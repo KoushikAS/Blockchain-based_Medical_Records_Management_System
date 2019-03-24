@@ -15,35 +15,35 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { UpdateVisit } from '../org.healthcare.basic';
+import { RevokePermission } from '../org.healthcare.basic';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class UpdateVisitService {
+export class RevokePermissionService {
 
-  private NAMESPACE = 'UpdateVisit';
+  private NAMESPACE = 'RevokePermission';
 
-  constructor(private dataService: DataService<UpdateVisit>) {
+  constructor(private dataService: DataService<RevokePermission>) {
   };
 
-  public getAll(): Observable<UpdateVisit[]> {
+  public getAll(): Observable<RevokePermission[]> {
       return this.dataService.getAll(this.NAMESPACE);
   }
 
-  public getTransaction(id: any): Observable<UpdateVisit> {
+  public getTransaction(id: any): Observable<RevokePermission> {
     return this.dataService.getSingle(this.NAMESPACE, id);
   }
 
-  public addTransaction(itemToAdd: any): Observable<UpdateVisit> {
+  public addTransaction(itemToAdd: any): Observable<RevokePermission> {
     return this.dataService.add(this.NAMESPACE, itemToAdd);
   }
 
-  public updateTransaction(id: any, itemToUpdate: any): Observable<UpdateVisit> {
+  public updateTransaction(id: any, itemToUpdate: any): Observable<RevokePermission> {
     return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
   }
 
-  public deleteTransaction(id: any): Observable<UpdateVisit> {
+  public deleteTransaction(id: any): Observable<RevokePermission> {
     return this.dataService.delete(this.NAMESPACE, id);
   }
 

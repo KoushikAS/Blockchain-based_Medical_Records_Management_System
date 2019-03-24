@@ -21,24 +21,24 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { UpdateVisitComponent } from './UpdateVisit.component';
-import {UpdateVisitService} from './UpdateVisit.service';
+import { RevokePermissionComponent } from './RevokePermission.component';
+import {RevokePermissionService} from './RevokePermission.service';
 
-describe('UpdateVisitComponent', () => {
-  let component: UpdateVisitComponent;
-  let fixture: ComponentFixture<UpdateVisitComponent>;
+describe('RevokePermissionComponent', () => {
+  let component: RevokePermissionComponent;
+  let fixture: ComponentFixture<RevokePermissionComponent>;
 
-  let mockUpdateVisitService;
+  let mockRevokePermissionService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockUpdateVisitService = sinon.createStubInstance(UpdateVisitService);
-    mockUpdateVisitService.getAll.returns([]);
+    mockRevokePermissionService = sinon.createStubInstance(RevokePermissionService);
+    mockRevokePermissionService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ UpdateVisitComponent ],
+      declarations: [ RevokePermissionComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -46,12 +46,12 @@ describe('UpdateVisitComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: UpdateVisitService, useValue: mockUpdateVisitService },
+        {provide: RevokePermissionService, useValue: mockRevokePermissionService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(UpdateVisitComponent);
+    fixture = TestBed.createComponent(RevokePermissionComponent);
     component = fixture.componentInstance;
 
   }));
