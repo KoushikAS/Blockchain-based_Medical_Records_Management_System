@@ -21,24 +21,24 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { UpdateMedicationComponent } from './UpdateMedication.component';
-import { UpdateMedicationService } from './UpdateMedication.service';
+import { GivePermissionComponent } from './GivePermission.component';
+import {GivePermissionService} from './GivePermission.service';
 
-describe('UpdateMedicationComponent', () => {
-  let component: UpdateMedicationComponent;
-  let fixture: ComponentFixture<UpdateMedicationComponent>;
+describe('GivePermissionComponent', () => {
+  let component: GivePermissionComponent;
+  let fixture: ComponentFixture<GivePermissionComponent>;
 
-  let mockUpdateMedicationService;
+  let mockGivePermissionService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockUpdateMedicationService = sinon.createStubInstance(UpdateMedicationService);
-    mockUpdateMedicationService.getAll.returns([]);
+    mockGivePermissionService = sinon.createStubInstance(GivePermissionService);
+    mockGivePermissionService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [UpdateMedicationComponent],
+      declarations: [ GivePermissionComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -46,12 +46,12 @@ describe('UpdateMedicationComponent', () => {
         HttpModule
       ],
       providers: [
-        { provide: UpdateMedicationService, useValue: mockUpdateMedicationService },
-        { provide: DataService, useValue: mockDataService },
+        {provide: GivePermissionService, useValue: mockGivePermissionService },
+        {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(UpdateMedicationComponent);
+    fixture = TestBed.createComponent(GivePermissionComponent);
     component = fixture.componentInstance;
 
   }));

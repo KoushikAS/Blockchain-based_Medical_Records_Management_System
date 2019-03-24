@@ -14,16 +14,16 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { UpdateVisitService } from './UpdateVisit.service';
+import { RevokePermissionService } from './RevokePermission.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'app-updatevisit',
-  templateUrl: './UpdateVisit.component.html',
-  styleUrls: ['./UpdateVisit.component.css'],
-  providers: [UpdateVisitService]
+  selector: 'app-revokepermission',
+  templateUrl: './RevokePermission.component.html',
+  styleUrls: ['./RevokePermission.component.css'],
+  providers: [RevokePermissionService]
 })
-export class UpdateVisitComponent implements OnInit {
+export class RevokePermissionComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -33,17 +33,15 @@ export class UpdateVisitComponent implements OnInit {
   private errorMessage;
 
   asset = new FormControl('', Validators.required);
-  procedure = new FormControl('', Validators.required);
-  medicationPrescribed = new FormControl('', Validators.required);
+  doctorId = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceUpdateVisit: UpdateVisitService, fb: FormBuilder) {
+  constructor(private serviceRevokePermission: RevokePermissionService, fb: FormBuilder) {
     this.myForm = fb.group({
       asset: this.asset,
-      procedure: this.procedure,
-      medicationPrescribed: this.medicationPrescribed,
+      doctorId: this.doctorId,
       transactionId: this.transactionId,
       timestamp: this.timestamp
     });
@@ -55,7 +53,7 @@ export class UpdateVisitComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceUpdateVisit.getAll()
+    return this.serviceRevokePermission.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -102,30 +100,27 @@ export class UpdateVisitComponent implements OnInit {
 
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.healthcare.basic.UpdateVisit',
+      $class: 'org.healthcare.basic.RevokePermission',
       'asset': this.asset.value,
-      'procedure': this.procedure.value,
-      'medicationPrescribed': this.medicationPrescribed.value,
+      'doctorId': this.doctorId.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
     };
 
     this.myForm.setValue({
       'asset': null,
-      'procedure': null,
-      'medicationPrescribed': null,
+      'doctorId': null,
       'transactionId': null,
       'timestamp': null
     });
 
-    return this.serviceUpdateVisit.addTransaction(this.Transaction)
+    return this.serviceRevokePermission.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
         'asset': null,
-        'procedure': null,
-        'medicationPrescribed': null,
+        'doctorId': null,
         'transactionId': null,
         'timestamp': null
       });
@@ -141,14 +136,13 @@ export class UpdateVisitComponent implements OnInit {
 
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.healthcare.basic.UpdateVisit',
+      $class: 'org.healthcare.basic.RevokePermission',
       'asset': this.asset.value,
-      'procedure': this.procedure.value,
-      'medicationPrescribed': this.medicationPrescribed.value,
+      'doctorId': this.doctorId.value,
       'timestamp': this.timestamp.value
     };
 
-    return this.serviceUpdateVisit.updateTransaction(form.get('transactionId').value, this.Transaction)
+    return this.serviceRevokePermission.updateTransaction(form.get('transactionId').value, this.Transaction)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -166,7 +160,7 @@ export class UpdateVisitComponent implements OnInit {
 
   deleteTransaction(): Promise<any> {
 
-    return this.serviceUpdateVisit.deleteTransaction(this.currentId)
+    return this.serviceRevokePermission.deleteTransaction(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -188,14 +182,13 @@ export class UpdateVisitComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceUpdateVisit.getTransaction(id)
+    return this.serviceRevokePermission.getTransaction(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
         'asset': null,
-        'procedure': null,
-        'medicationPrescribed': null,
+        'doctorId': null,
         'transactionId': null,
         'timestamp': null
       };
@@ -206,16 +199,10 @@ export class UpdateVisitComponent implements OnInit {
         formObject.asset = null;
       }
 
-      if (result.procedure) {
-        formObject.procedure = result.procedure;
+      if (result.doctorId) {
+        formObject.doctorId = result.doctorId;
       } else {
-        formObject.procedure = null;
-      }
-
-      if (result.medicationPrescribed) {
-        formObject.medicationPrescribed = result.medicationPrescribed;
-      } else {
-        formObject.medicationPrescribed = null;
+        formObject.doctorId = null;
       }
 
       if (result.transactionId) {
@@ -247,8 +234,7 @@ export class UpdateVisitComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'asset': null,
-      'procedure': null,
-      'medicationPrescribed': null,
+      'doctorId': null,
       'transactionId': null,
       'timestamp': null
     });

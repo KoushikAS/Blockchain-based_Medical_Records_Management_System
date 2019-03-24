@@ -13,8 +13,10 @@ import { MedicalInfoComponent } from './MedicalInfo/MedicalInfo.component';
 import { DoctorComponent } from './Doctor/Doctor.component';
 import { PatientComponent } from './Patient/Patient.component';
 
-import { UpdateMedicationComponent } from './UpdateMedication/UpdateMedication.component';
 import { UpdateVisitComponent } from './UpdateVisit/UpdateVisit.component';
+import { GivePermissionComponent } from './GivePermission/GivePermission.component';
+import { RevokePermissionComponent } from './RevokePermission/RevokePermission.component';
+
 import { RestService } from 'services/rest.service';
 
 @NgModule({
@@ -24,8 +26,9 @@ import { RestService } from 'services/rest.service';
     MedicalInfoComponent,
     DoctorComponent,
     PatientComponent,
-    UpdateMedicationComponent,
-    UpdateVisitComponent
+    UpdateVisitComponent,
+    GivePermissionComponent,
+    RevokePermissionComponent
   ],
   imports: [
     BrowserModule,

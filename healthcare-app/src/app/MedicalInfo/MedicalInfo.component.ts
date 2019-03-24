@@ -1,3 +1,16 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -23,13 +36,15 @@ export class MedicalInfoComponent implements OnInit {
   medId = new FormControl('', Validators.required);
   medication = new FormControl('', Validators.required);
   pastVisitsArray = new FormControl('', Validators.required);
+  permissionedDoctorsId = new FormControl('', Validators.required);
 
   constructor(public serviceMedicalInfo: MedicalInfoService, fb: FormBuilder) {
     this.myForm = fb.group({
       owner: this.owner,
       medId: this.medId,
       medication: this.medication,
-      pastVisitsArray: this.pastVisitsArray
+      pastVisitsArray: this.pastVisitsArray,
+      permissionedDoctorsId: this.permissionedDoctorsId
     });
   };
 
@@ -90,14 +105,16 @@ export class MedicalInfoComponent implements OnInit {
       'owner': this.owner.value,
       'medId': this.medId.value,
       'medication': this.medication.value,
-      'pastVisitsArray': this.pastVisitsArray.value
+      'pastVisitsArray': this.pastVisitsArray.value,
+      'permissionedDoctorsId': this.permissionedDoctorsId.value
     };
 
     this.myForm.setValue({
       'owner': null,
       'medId': null,
       'medication': null,
-      'pastVisitsArray': null
+      'pastVisitsArray': null,
+      'permissionedDoctorsId': null
     });
 
     return this.serviceMedicalInfo.addAsset(this.asset)
@@ -108,7 +125,8 @@ export class MedicalInfoComponent implements OnInit {
         'owner': null,
         'medId': null,
         'medication': null,
-        'pastVisitsArray': null
+        'pastVisitsArray': null,
+        'permissionedDoctorsId': null
       });
       this.loadAll();
     })
@@ -127,7 +145,8 @@ export class MedicalInfoComponent implements OnInit {
       $class: 'org.healthcare.basic.MedicalInfo',
       'owner': this.owner.value,
       'medication': this.medication.value,
-      'pastVisitsArray': this.pastVisitsArray.value
+      'pastVisitsArray': this.pastVisitsArray.value,
+      'permissionedDoctorsId': this.permissionedDoctorsId.value
     };
 
     return this.serviceMedicalInfo.updateAsset(form.get('medId').value, this.asset)
@@ -181,7 +200,8 @@ export class MedicalInfoComponent implements OnInit {
         'owner': null,
         'medId': null,
         'medication': null,
-        'pastVisitsArray': null
+        'pastVisitsArray': null,
+        'permissionedDoctorsId': null
       };
 
       if (result.owner) {
@@ -208,6 +228,12 @@ export class MedicalInfoComponent implements OnInit {
         formObject.pastVisitsArray = null;
       }
 
+      if (result.permissionedDoctorsId) {
+        formObject.permissionedDoctorsId = result.permissionedDoctorsId;
+      } else {
+        formObject.permissionedDoctorsId = null;
+      }
+
       this.myForm.setValue(formObject);
 
     })
@@ -227,7 +253,8 @@ export class MedicalInfoComponent implements OnInit {
       'owner': null,
       'medId': null,
       'medication': null,
-      'pastVisitsArray': null
+      'pastVisitsArray': null,
+      'permissionedDoctorsId': null
       });
   }
 

@@ -18,22 +18,27 @@ export class MedicalInfo extends Asset {
    medId: string;
    medication: string;
    pastVisitsArray: Visits[];
+   permissionedDoctorsId: string[];
 }
 export class Visits {
-   visitDate: Date;
-   procedure: string;
+   visitDate: Date;   
    doctorId: string;
+   doctorName: string;
+   procedure: string;
    medicationPrescribed: string;
 }
-export class UpdateMedication extends Transaction {
-   asset: MedicalInfo;
-   newMedication: string;
-}
+
 export class UpdateVisit extends Transaction {
    asset: MedicalInfo;
-   visitDate: Date;
    procedure: string;
-   doctorId: string;
    medicationPrescribed: string;
+}
+export class GivePermission extends Transaction {
+   asset: MedicalInfo;
+   doctorId: string;
+}
+export class RevokePermission extends Transaction {
+   asset: MedicalInfo;
+   doctorId: string;
 }
 // }
