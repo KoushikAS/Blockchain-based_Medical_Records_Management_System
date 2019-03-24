@@ -75,6 +75,22 @@ rule DoctorPermissionToViewProfile{
     action: ALLOW
 }
 
+rule DoctorPermissionToViewPatientsProfile{
+    description: "Allow doctor to read  all patients profile"
+    participant: "org.healthcare.basic.Doctor"
+    operation: READ
+    resource: "org.healthcare.basic.Patient"
+    action: ALLOW
+}
+
+rule PatientPermissionToViewDoctorProfile{
+    description: "Allow patients to read  all doctor profile"
+    participant: "org.healthcare.basic.Patient"
+    operation: READ
+    resource: "org.healthcare.basic.Doctor"
+    action: ALLOW
+}
+
 rule SystemACL {
   description:  "System ACL to permit all access"
   participant: "org.hyperledger.composer.system.Participant"
