@@ -14,9 +14,9 @@ sudo ./createPeerAdminCard.sh
 
 composer archive create -t dir -n . 
 
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.27.bna
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
 
-sudo composer network start --networkName healthcare --networkVersion 0.0.27 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+sudo composer network start --networkName healthcare --networkVersion 0.0.12 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 sudo composer card import --file networkadmin.card
 
@@ -84,8 +84,8 @@ To upgrade the network :
 2) Run following  commands to deploy the new network :
 
 sudo composer archive create --sourceType dir --sourceName .
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.28.bna
-sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.28
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.13.bna
+sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.13
 
 ---------------------------------------------------------------------------------------------------------
 Important sites :
