@@ -47,6 +47,16 @@
 
             
               <div class="form-group text-left">
+                <label for="allergy">allergy</label>
+                
+                  <input formControlName="allergy" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
                 <label for="medication">medication</label>
                 
                   <input formControlName="medication" type="text" class="form-control">
@@ -117,6 +127,15 @@
               
               
                 <input [ngModel]="medId" formControlName="medId" class="form-control" disabled="disabled">  
+              
+
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="allergy">allergy</label>
+              
+              
+                <input [ngModel]="allergy"formControlName="allergy" type="text" class="form-control">
               
 
             </div>
@@ -225,6 +244,8 @@
             
                 <th class="info">medId</th>
             
+                <th class="info">allergy</th>
+            
                 <th class="info">medication</th>
             
                 <th class="info">pastVisitsArray</th>
@@ -241,6 +262,8 @@
                 <td class="asset-properties">{{asset.owner}}</td>
             
                 <td class="asset-properties">{{asset.medId}}</td>
+            
+                <td class="asset-properties">{{asset.allergy}}</td>
             
                 <td class="asset-properties">{{asset.medication}}</td>
             
