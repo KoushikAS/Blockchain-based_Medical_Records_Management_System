@@ -39,9 +39,59 @@
               <label>Last name</label>
             </td>
             <td>
-              <input type="text" [(ngModel)]="signUp.lastName" #surname="ngModel" name="surname">
+              <input type="text" [(ngModel)]="signUp.lastName" #lastname="ngModel" name="lastname">
             </td>
           </tr>
+          <tr>
+            <td>
+              <label>Ph No</label>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="signUp.phNo" #phno="ngModel" name="phNo">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Specialist(doctor)</label>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="signUp.specialist" #specialist="ngModel" name="specialist">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Work Experience(doctor)</label>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="signUp.workExp" #workexp="ngModel" name="workExp">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Hospital(doctor)</label>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="signUp.hospital" #hospital="ngModel" name="hospital">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Age(patient)</label>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="signUp.age" #age="ngModel" name="age">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>Address(patient)</label>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="signUp.address" #address="ngModel" name="address">
+            </td>
+          </tr>
+          
+
         </table>
         <button (click)="onSignUpDoctor()" type="submit" class="primary">
           <div *ngIf="!signUpInProgress">

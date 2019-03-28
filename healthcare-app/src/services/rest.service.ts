@@ -14,7 +14,11 @@ export class RestService{
               $class: 'org.healthcare.basic.Doctor',
               doctorId: data.id,
               firstName: data.firstName,
-              lastName: data.lastName
+              lastName: data.lastName,
+              specialist: data.specialist,
+              workExp: data.workExp,
+              hospital: data.hospital,
+              phNo: data.phNo
             };
             
             console.log(Doctor);
@@ -55,7 +59,10 @@ export class RestService{
               $class: 'org.healthcare.basic.Patient',
               patientId: data.id,
               firstName: data.firstName,
-              lastName: data.lastName
+              lastName: data.lastName,
+              age: data.age,
+              address: data.address,
+              phNo: data.phNo
             };
             
             console.log(Patient);

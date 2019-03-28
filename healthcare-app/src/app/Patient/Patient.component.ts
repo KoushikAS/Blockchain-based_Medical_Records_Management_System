@@ -35,13 +35,19 @@ export class PatientComponent implements OnInit {
   patientId = new FormControl('', Validators.required);
   firstName = new FormControl('', Validators.required);
   lastName = new FormControl('', Validators.required);
+  age = new FormControl('', Validators.required);
+  address = new FormControl('', Validators.required);
+  phNo = new FormControl('', Validators.required);
 
 
   constructor(public servicePatient: PatientService, fb: FormBuilder) {
     this.myForm = fb.group({
       patientId: this.patientId,
       firstName: this.firstName,
-      lastName: this.lastName
+      lastName: this.lastName,
+      age: this.age,
+      address: this.address,
+      phNo: this.phNo
     });
   };
 
@@ -100,13 +106,19 @@ export class PatientComponent implements OnInit {
       $class: 'org.healthcare.basic.Patient',
       'patientId': this.patientId.value,
       'firstName': this.firstName.value,
-      'lastName': this.lastName.value
+      'lastName': this.lastName.value,
+      'age': this.age.value,
+      'address': this.address.value,
+      'phNo': this.phNo.value
     };
 
     this.myForm.setValue({
       'patientId': null,
       'firstName': null,
-      'lastName': null
+      'lastName': null,
+      'age': null,
+      'address': null,
+      'phNo': null
     });
 
     return this.servicePatient.addParticipant(this.participant)
@@ -116,7 +128,10 @@ export class PatientComponent implements OnInit {
       this.myForm.setValue({
         'patientId': null,
         'firstName': null,
-        'lastName': null
+        'lastName': null,
+        'age': null,
+        'address': null,
+        'phNo': null
       });
       this.loadAll(); 
     })
@@ -134,7 +149,10 @@ export class PatientComponent implements OnInit {
     this.participant = {
       $class: 'org.healthcare.basic.Patient',
       'firstName': this.firstName.value,
-      'lastName': this.lastName.value
+      'lastName': this.lastName.value,
+      'age': this.age.value,
+      'address': this.address.value,
+      'phNo': this.phNo.value
     };
 
     return this.servicePatient.updateParticipant(form.get('patientId').value, this.participant)
@@ -187,7 +205,10 @@ export class PatientComponent implements OnInit {
       const formObject = {
         'patientId': null,
         'firstName': null,
-        'lastName': null
+        'lastName': null,
+        'age': null,
+        'address': null,
+        'phNo': null
       };
 
       if (result.patientId) {
@@ -208,6 +229,24 @@ export class PatientComponent implements OnInit {
         formObject.lastName = null;
       }
 
+      if (result.age) {
+        formObject.age = result.age;
+      } else {
+        formObject.age = null;
+      }
+
+      if (result.address) {
+        formObject.address = result.address;
+      } else {
+        formObject.address = null;
+      }
+
+      if (result.phNo) {
+        formObject.phNo = result.phNo;
+      } else {
+        formObject.phNo = null;
+      }
+
       this.myForm.setValue(formObject);
     })
     .catch((error) => {
@@ -226,7 +265,10 @@ export class PatientComponent implements OnInit {
     this.myForm.setValue({
       'patientId': null,
       'firstName': null,
-      'lastName': null
+      'lastName': null,
+      'age': null,
+      'address': null,
+      'phNo': null
     });
   }
 }
