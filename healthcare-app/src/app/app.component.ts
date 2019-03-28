@@ -14,11 +14,23 @@ export class AppComponent implements AfterViewInit {
   private authenticated = false;
   private loggedIn = false;
   private signUpInProgress = false;
+  
+  private doctor={
+    id: '',
+    firstName: '',
+    lastName: '',
+  } 
 
   private signUp = {
     id: '',
     firstName: '',
-    surname: '',
+    lastName: '',
+    phNo: '',
+    specialist: '',
+    workExp: '',
+    hospital: '',
+    age: '',
+    address: '',
   };
 
   constructor(private route: ActivatedRoute,
@@ -58,7 +70,9 @@ export class AppComponent implements AfterViewInit {
 
   onSignUpDoctor() {
     console.log('inside');
+    console.log(this.signUp);
     this.signUpInProgress = true;
+    
     return this.restService.signUpDoctor(this.signUp)
       .then(() => {
         //next 2 lines not needed

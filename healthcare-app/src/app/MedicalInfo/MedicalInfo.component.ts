@@ -21,6 +21,7 @@ export class MedicalInfoComponent implements OnInit {
 
   owner = new FormControl('', Validators.required);
   medId = new FormControl('', Validators.required);
+  allergy = new FormControl('', Validators.required);
   medication = new FormControl('', Validators.required);
   pastVisitsArray = new FormControl('', Validators.required);
   permissionedDoctorsId = new FormControl('', Validators.required);
@@ -30,6 +31,7 @@ export class MedicalInfoComponent implements OnInit {
     this.myForm = fb.group({
       owner: this.owner,
       medId: this.medId,
+      allergy: this.allergy,
       medication: this.medication,
       pastVisitsArray:  this.pastVisitsArray,
       permissionedDoctorsId: this.permissionedDoctorsId
@@ -93,6 +95,7 @@ export class MedicalInfoComponent implements OnInit {
       $class: 'org.healthcare.basic.MedicalInfo',
       'owner': this.owner.value,
       'medId': this.medId.value,
+      'allergy': this.allergy.value,
       'medication': this.medication.value,
       'pastVisitsArray': this.pastVisitsArray.value,
       'permissionedDoctorsId': this.permissionedDoctorsId.value
@@ -101,6 +104,7 @@ export class MedicalInfoComponent implements OnInit {
     this.myForm.setValue({
       'owner': null,
       'medId': null,
+      'allergy': null,
       'medication': null,
       'pastVisitsArray': null,
       'permissionedDoctorsId': null
@@ -113,6 +117,7 @@ export class MedicalInfoComponent implements OnInit {
       this.myForm.setValue({
         'owner': null,
         'medId': null,
+        'allergy': null,
         'medication': null,
         'pastVisitsArray': null,
         'permissionedDoctorsId': null
@@ -133,6 +138,7 @@ export class MedicalInfoComponent implements OnInit {
     this.asset = {
       $class: 'org.healthcare.basic.MedicalInfo',
       'owner': this.owner.value,
+      'allergy': this.allergy.value,
       'medication': this.medication.value,
       'pastVisitsArray': this.pastVisitsArray.value,
       'permissionedDoctorsId': this.permissionedDoctorsId.value
@@ -188,6 +194,7 @@ export class MedicalInfoComponent implements OnInit {
       const formObject = {
         'owner': null,
         'medId': null,
+        'allergy': null,
         'medication': null,
         'pastVisitsArray': null,
         'permissionedDoctorsId': null
@@ -203,6 +210,12 @@ export class MedicalInfoComponent implements OnInit {
         formObject.medId = result.medId;
       } else {
         formObject.medId = null;
+      }
+
+      if (result.allergy) {
+        formObject.allergy = result.allergy;
+      } else {
+        formObject.allergy = null;
       }
 
       if (result.medication) {
@@ -241,6 +254,7 @@ export class MedicalInfoComponent implements OnInit {
     this.myForm.setValue({
       'owner': null,
       'medId': null,
+      'allergy': null,
       'medication': null,
       'pastVisitsArray': null,
       'permissionedDoctorsId': null

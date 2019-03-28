@@ -10,6 +10,7 @@
       </div>
       <form [formGroup]="myForm">
         <div class="modal-body">
+<<<<<<< HEAD
           <div class="form-group text-left">
             <label for="owner">owner</label>
             <textarea formControlName="owner" class="form-control" rows="3"></textarea>
@@ -31,6 +32,72 @@
             <label for="permissionedDoctorsId">permissionedDoctorsId</label>
             <input formControlName="permissionedDoctorsId" type="text" class="form-control">
           </div>
+=======
+
+
+          
+
+            
+              <div class="form-group text-left">
+                <label for="owner">owner</label>
+                
+                    <textarea formControlName="owner" class="form-control" rows="3"></textarea>
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
+                <label for="medId">medId</label>
+                
+                  <input formControlName="medId" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
+                <label for="allergy">allergy</label>
+                
+                  <input formControlName="allergy" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
+                <label for="medication">medication</label>
+                
+                  <input formControlName="medication" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
+                <label for="pastVisitsArray">pastVisitsArray</label>
+                
+                    <textarea formControlName="pastVisitsArray" class="form-control" rows="3"></textarea>
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
+                <label for="permissionedDoctorsId">permissionedDoctorsId</label>
+                
+                  <input formControlName="permissionedDoctorsId" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+>>>>>>> 15f4081a3a54c09200e022d1e5037bf4b7579eb9
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -60,6 +127,11 @@
             <label for="owner">Patient Id</label>
             <textarea [ngModel]="owner" formControlName="owner" class="form-control" rows="3"></textarea>
           </div> -->
+
+          <div class="form-group text-left">
+            <label for="allergy">allergy</label>
+              <input [ngModel]="allergy"formControlName="allergy" type="text" class="form-control">
+          </div>
 
           <div class="form-group text-left">
             <label for="medId">Medicine Id</label>
@@ -145,6 +217,7 @@
           <tr class="thead-cols">
             <th class="info">Patient Id</th>
             <th class="info">Patient Name</th>
+            <th class="info">allergy</th>
             <th class="info">Medication Id</th>
             <th class="info">Medication</th>
             <th class="info">Referenced Doctor</th>
@@ -157,6 +230,7 @@
           <tr *ngFor="let asset of allAssets">
             <td class="asset-properties">{{ _.last(_.split(asset.owner, '#')) }}</td> 
             <td class="asset-properties">{{ asset.owner }}</td>   <!--need to change to patient name-->
+            <td class="asset-properties">{{asset.allergy}}</td>
             <td class="asset-properties">{{ _.capitalize(asset.medId) }}</td>
             <td class="asset-properties">{{ _.capitalize(asset.medication) }}</td>
             <td class="asset-properties">{{ _.capitalize(_.last(asset.pastVisitsArray).doctorName) }}</td>
