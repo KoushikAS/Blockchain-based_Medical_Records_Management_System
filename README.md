@@ -45,6 +45,8 @@ sudo -E composer-rest-server -c admin@healthcare -n never  -m true -a true
 
 
 5)To start the frontend of the app in port 4200 (Go to healthcare folder) open a new terminal:
+npm install lodash  (only once)
+npm i --save-dev @types/lodash@4.14.121   (only once)
 cd healthcare-app
 npm start
 

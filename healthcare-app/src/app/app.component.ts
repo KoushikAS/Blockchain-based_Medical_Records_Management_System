@@ -2,9 +2,6 @@
 import { Component, AfterViewInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '../services/rest.service';
-
-
-
 import $ from 'jquery';
 
 @Component({
@@ -64,8 +61,10 @@ export class AppComponent implements AfterViewInit {
     this.signUpInProgress = true;
     return this.restService.signUpDoctor(this.signUp)
       .then(() => {
+        //next 2 lines not needed
         this.loggedIn = true;
         this.signUpInProgress = false;
+        this.router.navigateByUrl('/MedicalInfo');
       });
   }
 
