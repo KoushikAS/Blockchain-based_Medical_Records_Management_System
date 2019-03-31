@@ -2,6 +2,7 @@
 import { Component, AfterViewInit, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from '../services/rest.service';
+import { MedicalInfoService } from './MedicalInfo/MedicalInfo.service';
 
 
 
@@ -36,7 +37,7 @@ export class AppComponent implements AfterViewInit {
     address: '',
   };
 
-  constructor(private route: ActivatedRoute,
+  constructor(public serviceMedicalInfo: MedicalInfoService, private route: ActivatedRoute,
     private router: Router, private restService: RestService) {
 
   }
@@ -90,7 +91,17 @@ export class AppComponent implements AfterViewInit {
       .then(() => {
         this.loggedIn = true;
         this.signUpInProgress = false;
+        var asset=({
+          'owner': "resource:org.healthcare.basic.Patient#"+this.signUp.id,
+          'medId': this.signUp.id,
+          'allergy': null,
+          'medication': " ",
+          'pastVisitsArray': [ ],
+          'permissionedDoctorsId': [ ]
+        });
+        return  this.serviceMedicalInfo.addAsset(asset)
+        .toPromise()
+       
       });
+    }
   }
-
-}
