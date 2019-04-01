@@ -1,21 +1,8 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MedicalInfoService } from './MedicalInfo.service';
 import 'rxjs/add/operator/toPromise';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-medicalinfo',
@@ -38,6 +25,7 @@ export class MedicalInfoComponent implements OnInit {
   medication = new FormControl('', Validators.required);
   pastVisitsArray = new FormControl('', Validators.required);
   permissionedDoctorsId = new FormControl('', Validators.required);
+  _ = _;
 
   constructor(public serviceMedicalInfo: MedicalInfoService, fb: FormBuilder) {
     this.myForm = fb.group({
@@ -45,7 +33,7 @@ export class MedicalInfoComponent implements OnInit {
       medId: this.medId,
       allergy: this.allergy,
       medication: this.medication,
-      pastVisitsArray: this.pastVisitsArray,
+      pastVisitsArray:  this.pastVisitsArray,
       permissionedDoctorsId: this.permissionedDoctorsId
     });
   };
@@ -64,6 +52,7 @@ export class MedicalInfoComponent implements OnInit {
         tempList.push(asset);
       });
       this.allAssets = tempList;
+      console.log(this.allAssets);
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -173,24 +162,24 @@ export class MedicalInfoComponent implements OnInit {
   }
 
 
-  deleteAsset(): Promise<any> {
+  // deleteAsset(): Promise<any> {
 
-    return this.serviceMedicalInfo.deleteAsset(this.currentId)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-      this.loadAll();
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
-  }
+  //   return this.serviceMedicalInfo.deleteAsset(this.currentId)
+  //   .toPromise()
+  //   .then(() => {
+  //     this.errorMessage = null;
+  //     this.loadAll();
+  //   })
+  //   .catch((error) => {
+  //     if (error === 'Server error') {
+  //       this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+  //     } else if (error === '404 - Not Found') {
+  //       this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+  //     } else {
+  //       this.errorMessage = error;
+  //     }
+  //   });
+  // }
 
   setId(id: any): void {
     this.currentId = id;

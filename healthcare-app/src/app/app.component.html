@@ -1,8 +1,7 @@
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <p class="network-name">healthcare@0.0.11.bna</p>
+      <p class="network-name">healthcare@0.0.12.bna</p>
       <p class="navbar-brand">healthcare-app</p>
     </div>
 
@@ -147,9 +146,6 @@
       </form>
     </section>
 
-
-
-
     <section *ngIf="loggedIn">
       <ul class="nav navbar-nav">
         <li class="dropdown active">
@@ -174,12 +170,12 @@
           <a class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
           <ul class="dropdown-menu scrollable-menu">
 
-          <li><a [routerLink]="['/UpdateVisit']">UpdateVisit</a></li>
-          
-          <li><a [routerLink]="['/GivePermission']">GivePermission</a></li>
-          
-          <li><a [routerLink]="['/RevokePermission']">RevokePermission</a></li>
-          
+            <li><a [routerLink]="['/UpdateVisit']">UpdateVisit</a></li>
+
+            <li><a [routerLink]="['/GivePermission']">GivePermission</a></li>
+
+            <li><a [routerLink]="['/RevokePermission']">RevokePermission</a></li>
+
           </ul>
         </li>
       </ul>
