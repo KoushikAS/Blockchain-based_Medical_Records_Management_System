@@ -104,4 +104,22 @@ export class AppComponent implements AfterViewInit {
        
       });
     }
+
+    onLoginPatient(){
+      console.log('inside');    
+      return this.restService.loginInPatient(this.signUp)
+      .then(() => {
+        this.loggedIn = true;
+        this.signUpInProgress = false;
+      });
+    }
+
+    onLoginDoctor(){
+      console.log('inside');    
+      return this.restService.loginInDoctor(this.signUp)
+      .then(() => {
+        this.loggedIn = true;
+        this.signUpInProgress = false;
+      });
+    }
   }

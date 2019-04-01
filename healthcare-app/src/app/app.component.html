@@ -119,6 +119,31 @@
           </div>
         </button>
 
+        <button (click)="onLoginPatient()" type="submit" class="primary">
+          <div *ngIf="!signUpInProgress">
+            <span>Login Patient</span>
+          </div>
+          <div *ngIf="signUpInProgress" class="ibm-spinner-indeterminate small loop">
+            <div class="loader">
+              <svg class="circular" viewBox="25 25 50 50">
+                <circle class="circle-path" cx="50" cy="50" r="20" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <button (click)="onLoginDoctor()" type="submit" class="primary">
+          <div *ngIf="!signUpInProgress">
+            <span>Login Doctor</span>
+          </div>
+          <div *ngIf="signUpInProgress" class="ibm-spinner-indeterminate small loop">
+            <div class="loader">
+              <svg class="circular" viewBox="25 25 50 50">
+                <circle class="circle-path" cx="50" cy="50" r="20" />
+              </svg>
+            </div>
+          </div>
+        </button>
       </form>
     </section>
 
