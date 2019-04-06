@@ -161,6 +161,29 @@ label {
     fill: currentColor;
 }
 
+.collapsible {
+    background-color: #fff;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #f5f2f0;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
 /***.asset-properties:hover, .asset-properties:hover span{  
 overflow: visible;
 position: relative;
@@ -174,4 +197,46 @@ margin-left: -4px;
 }
 ***/
 
+.cssCircle {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    /* behavior: url(PIE.htc); */
+
+    width: 13px;
+    height: 13px;
+    padding: 0px;
+
+    background: #779BCA;
+    border: 1px solid #003580;
+    color: #003580;
+    text-align: center;
+    -webkit-transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear;
+    -ms-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+    transition: color 0.2s linear;
+
+    font: 13px Arial, sans-serif
+}
+
+.cssCircle:hover {
+    background: #3F69A0 ;
+    cursor: pointer;
+}
+
+.minusSign {
+    line-height: 0.9em;
+    margin-bottom: 1px;
+}
+
+.plusSign {
+    line-height: 1.1em;
+}
+
+.minusSign:hover,
+.plusSign:hover {
+    color: white;
+}
 

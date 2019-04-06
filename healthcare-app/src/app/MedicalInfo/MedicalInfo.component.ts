@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MedicalInfoService } from './MedicalInfo.service';
 import 'rxjs/add/operator/toPromise';
 import * as _ from 'lodash';
+// import { MedicalHistory } from '../medicalHistory/medicalHistory.component';
 
 @Component({
   selector: 'app-medicalinfo',
@@ -40,6 +41,30 @@ export class MedicalInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+    
+  }
+
+  afterEffects(): void {
+    var expanded = document.getElementsByClassName('collapsible');
+      var i = 0;
+
+      for(i = 0; i < expanded.length; i++) {
+        expanded[i].addEventListener('click', function() {
+          this.classList.toggle('active');
+          var content = this.nextElementSibling;
+
+          if(content.style.display === 'block') {
+            content.style.display = 'none';
+          } else {
+            content.style.display = 'block';
+          }
+        });
+      }
+
+      var plus = document.getElementById('plus');
+      plus.addEventListener('click', function() {
+      console.log('jhbferhvbherv');
+      })
   }
 
   loadAll(): Promise<any> {
@@ -53,6 +78,9 @@ export class MedicalInfoComponent implements OnInit {
       });
       this.allAssets = tempList;
       console.log(this.allAssets);
+
+      this.afterEffects();
+
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -161,26 +189,6 @@ export class MedicalInfoComponent implements OnInit {
     });
   }
 
-
-  // deleteAsset(): Promise<any> {
-
-  //   return this.serviceMedicalInfo.deleteAsset(this.currentId)
-  //   .toPromise()
-  //   .then(() => {
-  //     this.errorMessage = null;
-  //     this.loadAll();
-  //   })
-  //   .catch((error) => {
-  //     if (error === 'Server error') {
-  //       this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-  //     } else if (error === '404 - Not Found') {
-  //       this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-  //     } else {
-  //       this.errorMessage = error;
-  //     }
-  //   });
-  // }
-
   setId(id: any): void {
     this.currentId = id;
   }
@@ -261,4 +269,38 @@ export class MedicalInfoComponent implements OnInit {
       });
   }
 
+  expand(): void {
+    console.log("jhgryge");
+    // this.expanded[medId] = !this.expanded[medId]
+    
+  }
+
+  // createComponent() {
+  //   let componentFactory = this.CFR.resolveComponentFactory(MedicalHistory);
+  //   let componentRef : ComponentRef<MedicalHistory> = this.VCR.createComponent(componentFactory);
+  //   let currentComponent = componentRef.instance;
+
+  //   currentComponent.selfRef = currentComponent;
+    
+  //   currentComponent.compInteraction = this;
+  //   this.componentsReference.push(componentRef);
+  
+  // }
+
+  // remove(index: number) {
+  //   if(this.VCR.length < 1) 
+  //     return;
+
+  //   let componentRef = this.componentsReference.filter(x => x.instance.index == index)[0];
+  //   let component: MedicalHistory = <MedicalHistory>componentRef.instance;
+
+  //   let vcrIndex: number = this.VCR.indexOf(componentRef)
+
+  //   this.VCR.remove(vcrIndex);
+
+  //   this.componentsReference = this.componentsReference.filter(x => 
+  //     x.instancemindex !== index);
+
+
+  // }
 }
