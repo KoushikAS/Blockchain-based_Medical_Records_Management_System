@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MedicalInfoService } from './MedicalInfo.service';
 import 'rxjs/add/operator/toPromise';
 import * as _ from 'lodash';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-medicalinfo',
@@ -10,6 +11,7 @@ import * as _ from 'lodash';
   styleUrls: ['./MedicalInfo.component.css'],
   providers: [MedicalInfoService]
 })
+
 export class MedicalInfoComponent implements OnInit {
 
   myForm: FormGroup;
@@ -18,6 +20,7 @@ export class MedicalInfoComponent implements OnInit {
   private asset;
   private currentId;
   private errorMessage;
+  private expanded = {};
 
   owner = new FormControl('', Validators.required);
   medId = new FormControl('', Validators.required);
@@ -50,6 +53,7 @@ export class MedicalInfoComponent implements OnInit {
       this.errorMessage = null;
       result.forEach(asset => {
         tempList.push(asset);
+        this.expanded[asset.medId] = false;
       });
       this.allAssets = tempList;
       console.log(this.allAssets);
