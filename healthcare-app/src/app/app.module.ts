@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { MedicalInfoComponent } from './MedicalInfo/MedicalInfo.component';
-
+// import { MedicalHistory } from './medicalHistory/medicalHistory.component';
 import { DoctorComponent } from './Doctor/Doctor.component';
 import { PatientComponent } from './Patient/Patient.component';
 
@@ -30,6 +30,9 @@ import { RestService } from 'services/rest.service';
     GivePermissionComponent,
     RevokePermissionComponent
   ],
+  // entryComponents: [
+  //   MedicalHistory
+  // ],
   imports: [
     BrowserModule,
     FormsModule,

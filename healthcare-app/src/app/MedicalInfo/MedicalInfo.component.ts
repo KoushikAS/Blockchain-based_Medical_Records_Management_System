@@ -43,6 +43,30 @@ export class MedicalInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+    
+  }
+
+  afterEffects(): void {
+    var expanded = document.getElementsByClassName('collapsible');
+      var i = 0;
+
+      for(i = 0; i < expanded.length; i++) {
+        expanded[i].addEventListener('click', function() {
+          this.classList.toggle('active');
+          var content = this.nextElementSibling;
+
+          if(content.style.display === 'block') {
+            content.style.display = 'none';
+          } else {
+            content.style.display = 'block';
+          }
+        });
+      }
+
+      var plus = document.getElementById('plus');
+      plus.addEventListener('click', function() {
+      console.log('jhbferhvbherv');
+      })
   }
 
   loadAll(): Promise<any> {
@@ -57,6 +81,9 @@ export class MedicalInfoComponent implements OnInit {
       });
       this.allAssets = tempList;
       console.log(this.allAssets);
+
+      this.afterEffects();
+
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -164,26 +191,6 @@ export class MedicalInfoComponent implements OnInit {
       }
     });
   }
-
-
-  // deleteAsset(): Promise<any> {
-
-  //   return this.serviceMedicalInfo.deleteAsset(this.currentId)
-  //   .toPromise()
-  //   .then(() => {
-  //     this.errorMessage = null;
-  //     this.loadAll();
-  //   })
-  //   .catch((error) => {
-  //     if (error === 'Server error') {
-  //       this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-  //     } else if (error === '404 - Not Found') {
-  //       this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-  //     } else {
-  //       this.errorMessage = error;
-  //     }
-  //   });
-  // }
 
   setId(id: any): void {
     this.currentId = id;
