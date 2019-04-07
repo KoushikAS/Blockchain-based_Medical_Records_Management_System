@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MedicalInfoService } from './MedicalInfo.service';
 import 'rxjs/add/operator/toPromise';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 import $ from 'jquery';
 
 @Component({
@@ -30,7 +31,7 @@ export class MedicalInfoComponent implements OnInit {
   permissionedDoctorsId = new FormControl('', Validators.required);
   _ = _;
 
-  constructor(public serviceMedicalInfo: MedicalInfoService, fb: FormBuilder) {
+  constructor(public serviceMedicalInfo: MedicalInfoService, fb: FormBuilder, private router: Router) {
     this.myForm = fb.group({
       owner: this.owner,
       medId: this.medId,
@@ -46,29 +47,6 @@ export class MedicalInfoComponent implements OnInit {
     
   }
 
-  afterEffects(): void {
-    var expanded = document.getElementsByClassName('collapsible');
-      var i = 0;
-
-      for(i = 0; i < expanded.length; i++) {
-        expanded[i].addEventListener('click', function() {
-          this.classList.toggle('active');
-          var content = this.nextElementSibling;
-
-          if(content.style.display === 'block') {
-            content.style.display = 'none';
-          } else {
-            content.style.display = 'block';
-          }
-        });
-      }
-
-      var plus = document.getElementById('plus');
-      plus.addEventListener('click', function() {
-      console.log('jhbferhvbherv');
-      })
-  }
-
   loadAll(): Promise<any> {
     const tempList = [];
     return this.serviceMedicalInfo.getAll()
@@ -82,8 +60,6 @@ export class MedicalInfoComponent implements OnInit {
       this.allAssets = tempList;
       console.log(this.allAssets);
 
-      this.afterEffects();
-
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -94,6 +70,12 @@ export class MedicalInfoComponent implements OnInit {
         this.errorMessage = error;
       }
     });
+  }
+
+  public updateVisit(medId): void {
+    this.router.navigate(['/UpdateVisit'], {queryParams : {
+      medId : medId
+    }});
   }
 
 	/**

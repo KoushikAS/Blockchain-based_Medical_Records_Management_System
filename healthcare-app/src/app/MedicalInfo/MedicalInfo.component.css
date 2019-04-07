@@ -15,7 +15,8 @@
     -o-transition: background 0.2s linear;
     transition: background 0.2s linear;
     transition: color 0.2s linear;
-    font: 13px Arial, sans-serif
+    font: 13px Arial, sans-serif;
+    margin-top: 27%;
 }
 
 .cssCircle:hover {

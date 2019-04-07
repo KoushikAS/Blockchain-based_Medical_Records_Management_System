@@ -17,31 +17,29 @@
           <tr class="thead-cols">
             <th class="info">Patient Id</th>
             <th class="info">Patient Name</th>
-            <th class="info">allergy</th>
             <th class="info">Medication Id</th>
             <th class="info">Medication</th>
+            <th class="info">Allergy</th>
             <th class="info">Referenced Doctor</th>
+            <th class="info">Update Visit</th>
           </tr>
         </thead>
 
         <tbody>
           <ng-container *ngFor="let asset of allAssets" class="table table-hover">
             <tr class="collapsible">
-              <td class="asset-properties expand" (click)="expanded[asset.medId]=!expanded[asset.medId]" >{{ _.last(_.split(asset.owner, '#')) }}</td>
+              <td class="asset-properties expand" (click)="expanded[asset.medId]=!expanded[asset.medId]">{{ _.last(_.split(asset.owner, '#')) }}</td>
               <td class="asset-properties">{{ asset.owner }}</td>
-              <td class="asset-properties">{{ asset.allergy }}</td>
               <td class="asset-properties">
                 {{ _.capitalize(asset.medId) }}
               </td>
               <td class="asset-properties">{{ _.capitalize(asset.medication) }}</td>
+              <td class="asset-properties">{{ asset.allergy }}</td>
               <td class="asset-properties">
                 {{ _.capitalize(_.last(asset.pastVisitsArray).doctorName) }}
               </td>
               <td>
-                <div class="cssCircle minusSign" style="padding-top:00px">
-                  &#8211;
-                </div>
-                <div class="cssCircle plusSign" id="plus">
+                <div class="cssCircle plusSign" id="plus" (click)="updateVisit(asset.medId)" data-toggle="modal" data-target="#addTransactionModal">
                   &#43;
                 </div>
               </td>
