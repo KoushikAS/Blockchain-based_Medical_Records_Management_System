@@ -14,9 +14,7 @@ export class AppComponent implements AfterViewInit {
 
   }
 
-
   ngAfterViewInit() {
-
     this.route
       .queryParams
       .subscribe(() => {
@@ -38,7 +36,4 @@ export class AppComponent implements AfterViewInit {
           });
         });
   }
-
-
-  
-  }
+}
