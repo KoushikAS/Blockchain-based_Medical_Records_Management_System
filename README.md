@@ -36,7 +36,7 @@ export COMPOSER_PROVIDERS='{
     "clientSecret": "fb5076fa93783b8dd9b7d6ab62f8ebbe9938438e",
     "authPath": "/auth/github",
     "callbackURL": "/auth/github/callback",
-    "successRedirect": "http://localhost:4200?loggedIn=true",
+    "successRedirect": "http://localhost:4200/login",
     "failureRedirect": "/"
   }
 }'
