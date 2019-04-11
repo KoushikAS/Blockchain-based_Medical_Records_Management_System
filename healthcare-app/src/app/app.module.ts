@@ -18,6 +18,9 @@ import { RevokePermissionComponent } from './RevokePermission/RevokePermission.c
 
 import { RestService } from 'services/rest.service';
 import { MedicalInfoService } from './MedicalInfo/MedicalInfo.service';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { MedicalInfoService } from './MedicalInfo/MedicalInfo.service';
     PatientComponent,
     UpdateVisitComponent,
     GivePermissionComponent,
-    RevokePermissionComponent
+    RevokePermissionComponent,
+    LoginComponent,
+    RegistrationComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
