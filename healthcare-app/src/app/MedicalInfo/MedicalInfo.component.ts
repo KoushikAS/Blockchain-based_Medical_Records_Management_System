@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MedicalInfoService } from './MedicalInfo.service';
 import 'rxjs/add/operator/toPromise';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-medicalinfo',
@@ -10,6 +12,7 @@ import * as _ from 'lodash';
   styleUrls: ['./MedicalInfo.component.css'],
   providers: [MedicalInfoService]
 })
+
 export class MedicalInfoComponent implements OnInit {
 
   myForm: FormGroup;
@@ -18,6 +21,7 @@ export class MedicalInfoComponent implements OnInit {
   private asset;
   private currentId;
   private errorMessage;
+  private expanded = {};
 
   owner = new FormControl('', Validators.required);
   medId = new FormControl('', Validators.required);
@@ -27,7 +31,7 @@ export class MedicalInfoComponent implements OnInit {
   permissionedDoctorsId = new FormControl('', Validators.required);
   _ = _;
 
-  constructor(public serviceMedicalInfo: MedicalInfoService, fb: FormBuilder) {
+  constructor(public serviceMedicalInfo: MedicalInfoService, fb: FormBuilder, private router: Router) {
     this.myForm = fb.group({
       owner: this.owner,
       medId: this.medId,
@@ -40,6 +44,7 @@ export class MedicalInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+    
   }
 
   loadAll(): Promise<any> {
@@ -50,9 +55,11 @@ export class MedicalInfoComponent implements OnInit {
       this.errorMessage = null;
       result.forEach(asset => {
         tempList.push(asset);
+        this.expanded[asset.medId] = false;
       });
       this.allAssets = tempList;
       console.log(this.allAssets);
+
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -63,6 +70,12 @@ export class MedicalInfoComponent implements OnInit {
         this.errorMessage = error;
       }
     });
+  }
+
+  public updateVisit(medId): void {
+    this.router.navigate(['/UpdateVisit'], {queryParams : {
+      medId : medId
+    }});
   }
 
 	/**
@@ -160,26 +173,6 @@ export class MedicalInfoComponent implements OnInit {
       }
     });
   }
-
-
-  // deleteAsset(): Promise<any> {
-
-  //   return this.serviceMedicalInfo.deleteAsset(this.currentId)
-  //   .toPromise()
-  //   .then(() => {
-  //     this.errorMessage = null;
-  //     this.loadAll();
-  //   })
-  //   .catch((error) => {
-  //     if (error === 'Server error') {
-  //       this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-  //     } else if (error === '404 - Not Found') {
-  //       this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-  //     } else {
-  //       this.errorMessage = error;
-  //     }
-  //   });
-  // }
 
   setId(id: any): void {
     this.currentId = id;

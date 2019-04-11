@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
 import { MedicalInfoComponent } from './MedicalInfo/MedicalInfo.component';
-
 import { DoctorComponent } from './Doctor/Doctor.component';
 import { PatientComponent } from './Patient/Patient.component';
 

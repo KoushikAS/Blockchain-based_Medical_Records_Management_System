@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UpdateVisitService } from './UpdateVisit.service';
 import 'rxjs/add/operator/toPromise';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-updatevisit',
@@ -18,6 +19,7 @@ export class UpdateVisitComponent implements OnInit {
   private Transaction;
   private currentId;
   private errorMessage;
+  private medId;
 
   asset = new FormControl('', Validators.required);
   procedure = new FormControl('', Validators.required);
@@ -26,9 +28,13 @@ export class UpdateVisitComponent implements OnInit {
   timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceUpdateVisit: UpdateVisitService, fb: FormBuilder) {
+  constructor(private serviceUpdateVisit: UpdateVisitService, fb: FormBuilder, public router: Router, public activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.medId = params['medId'];
+    });
+
     this.myForm = fb.group({
-      asset: this.asset,
+      asset: this.medId,
       procedure: this.procedure,
       medicationPrescribed: this.medicationPrescribed,
       transactionId: this.transactionId,
@@ -90,15 +96,15 @@ export class UpdateVisitComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.healthcare.basic.UpdateVisit',
-      'asset': this.asset.value,
+      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medId,
       'procedure': this.procedure.value,
       'medicationPrescribed': this.medicationPrescribed.value,
       'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'timestamp': new Date()
     };
 
     this.myForm.setValue({
-      'asset': null,
+      'asset': this.medId,
       'procedure': null,
       'medicationPrescribed': null,
       'transactionId': null,
@@ -110,12 +116,13 @@ export class UpdateVisitComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'asset': null,
+        'asset': this.medId,
         'procedure': null,
         'medicationPrescribed': null,
         'transactionId': null,
         'timestamp': null
       });
+      this.router.navigateByUrl('/MedicalInfo');
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -129,7 +136,7 @@ export class UpdateVisitComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.healthcare.basic.UpdateVisit',
-      'asset': this.asset.value,
+      'asset': this.medId,
       'procedure': this.procedure.value,
       'medicationPrescribed': this.medicationPrescribed.value,
       'timestamp': this.timestamp.value
@@ -180,7 +187,7 @@ export class UpdateVisitComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'asset': null,
+        'asset': this.medId,
         'procedure': null,
         'medicationPrescribed': null,
         'transactionId': null,
@@ -233,7 +240,7 @@ export class UpdateVisitComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'asset': null,
+      'asset': this.medId,
       'procedure': null,
       'medicationPrescribed': null,
       'transactionId': null,
