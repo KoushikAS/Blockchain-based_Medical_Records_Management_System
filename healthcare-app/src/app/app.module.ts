@@ -17,6 +17,7 @@ import { GivePermissionComponent } from './GivePermission/GivePermission.compone
 import { RevokePermissionComponent } from './RevokePermission/RevokePermission.component';
 
 import { RestService } from 'services/rest.service';
+import { MedicalInfoService } from './MedicalInfo/MedicalInfo.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RestService } from 'services/rest.service';
   ],
   providers: [
     DataService,
-    RestService
+    RestService,
+    MedicalInfoService
   ],
   bootstrap: [AppComponent]
 })
