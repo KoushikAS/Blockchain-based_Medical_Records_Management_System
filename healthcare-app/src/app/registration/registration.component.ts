@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
     age: '',
     address: '',
   };
-  // private loading = false;
+  private loading = false;
 
   constructor(public serviceMedicalInfo: MedicalInfoService,
     private router: Router, private restService: RestService) { }
@@ -43,16 +43,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSignUpDoctor() {
-    // this.loading=true;    
+    this.loading=true;    
     return this.restService.signUpDoctor(this.signUp)
       .then(() => {
-        // this.loading=false;
+        this.loading=false;
         this.router.navigateByUrl('/MedicalInfo');
       });
   }
 
   onSignUpPatient() {
-    // this.loading=true;
+    this.loading=true;
     console.log("inside");
     return this.restService.signUpPatient(this.signUp1)
       .then(() => {
@@ -71,7 +71,7 @@ export class RegistrationComponent implements OnInit {
         .then(()=>{
           console.log("3")
           this.router.navigateByUrl('/Patient');
-          // this.loading=false;
+          this.loading=false;
         });
       });
     }
