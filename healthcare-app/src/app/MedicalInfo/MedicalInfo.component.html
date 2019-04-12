@@ -27,8 +27,8 @@
 
         <tbody>
           <ng-container *ngFor="let asset of allAssets" class="table table-hover">
-            <tr class="collapsible">
-              <td class="asset-properties expand" (click)="expanded[asset.medId]=!expanded[asset.medId]">{{ _.last(_.split(asset.owner, '#')) }}</td>
+            <tr class="collapsible" (click)="expanded[asset.medId]=!expanded[asset.medId]">
+              <td class="asset-properties expand">{{ _.last(_.split(asset.owner, '#')) }}</td>
               <td class="asset-properties">{{ asset.owner }}</td>
               <td class="asset-properties">
                 {{ _.capitalize(asset.medId) }}
@@ -46,7 +46,7 @@
             </tr>
 
             <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
-              <table class="table table-responsive" style="margin-left: 2%; margin-right:2%">
+              <table class="table table-responsive" >
                 <thead class="thead">
                   <th class="info">Date</th>
                   <th class="info">Doctor Id</th>
