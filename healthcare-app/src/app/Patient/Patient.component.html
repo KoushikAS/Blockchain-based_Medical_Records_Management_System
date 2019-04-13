@@ -98,7 +98,7 @@
         </thead>
 
         <tbody>
-          <ng-container *ngFor="let history of medAsset[0].pastVisitsArray" class="table table-hover">
+          <ng-container *ngFor="let history of medAsset.pastVisitsArray" class="table table-hover">
             <tr>
               <td class="asset-properties">{{ history.doctorId }}</td>
               <td class="asset-properties">{{ _.capitalize(history.name) }}</td>

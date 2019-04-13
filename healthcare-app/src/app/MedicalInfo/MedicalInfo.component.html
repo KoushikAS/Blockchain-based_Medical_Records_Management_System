@@ -75,8 +75,8 @@
               </td>
             </tr>
 
-            <!-- <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray"> -->
-              <table class="table table1 table-responsive" *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
+            <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
+              <table class="table table1 table-responsive">
                 <thead class="thead">
                     <tr class="thead-cols">
 
@@ -101,7 +101,7 @@
                 </tr>
               </tbody>
               </table>
-            <!-- </span> -->
+            </span>
           </ng-container>
         </tbody>
       </table>

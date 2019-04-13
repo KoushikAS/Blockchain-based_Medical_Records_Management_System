@@ -119,8 +119,8 @@ export class PatientComponent implements OnInit {
       result.forEach(asset => {
         tempList.push(asset);
       });
-      this.medAsset = tempList;
-      _.first(this.medAsset)['pastVisisArray'] = _.sortBy(_.first(this.medAsset)['pastVisisArray'], 
+      this.medAsset = _.first(tempList);
+      this.medAsset['pastVisisArray'] = _.sortBy(this.medAsset['pastVisisArray'], 
         [function(asset){return moment(asset.visitDate).format('LLL')}]);
       console.log(this.medAsset);
       this.getAllDoctors();
@@ -161,8 +161,10 @@ export class PatientComponent implements OnInit {
   getPermissionedDoctors(): void {
     this.doctors = [];
 
-    _.forEach(_.first(this.medAsset)['permissionedDoctorsId'], (docId) => {
-      this.doctors.push(this.allDoctors[_.indexOf(_.map(this.allDoctors, 'doctorId'), docId)]);
+    _.forEach(this.medAsset['permissionedDoctorsId'], (docId) => {
+      console.log(this.allDoctors);
+      var index = _.indexOf(_.map(this.allDoctors, 'doctorId'), docId);
+      (index != -1) ? this.doctors.push(this.allDoctors[index]) : '';
     });
     console.log(this.doctors);
   }
