@@ -15,8 +15,9 @@ import { RevokePermissionComponent } from './RevokePermission/RevokePermission.c
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'MedicalInfo', component: MedicalInfoComponent },
   { path: 'Doctor', component: DoctorComponent },
   { path: 'Patient', component: PatientComponent },

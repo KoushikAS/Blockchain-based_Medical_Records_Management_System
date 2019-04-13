@@ -1,21 +1,14 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PatientService } from './Patient.service';
+import { MedicalInfoService } from '../MedicalInfo/MedicalInfo.service';
+import { Router } from '@angular/router';
+import { DoctorService } from '../Doctor/Doctor.service';
 import 'rxjs/add/operator/toPromise';
+import { RevokePermissionService } from '../RevokePermission/RevokePermission.service';
+// import { GivePermissionService } from '../GivePermission/GivePermission.service';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-patient',
@@ -31,6 +24,10 @@ export class PatientComponent implements OnInit {
   private participant;
   private currentId;
   private errorMessage;
+  private medAsset;
+  private allDoctors;
+  private Transaction;
+  private doctors;
 
   patientId = new FormControl('', Validators.required);
   firstName = new FormControl('', Validators.required);
@@ -38,21 +35,29 @@ export class PatientComponent implements OnInit {
   age = new FormControl('', Validators.required);
   address = new FormControl('', Validators.required);
   phNo = new FormControl('', Validators.required);
+  _ = _;
+  transactionId = new FormControl('', Validators.required);
+  timestamp = new FormControl('', Validators.required);
+  moment = moment;
 
-
-  constructor(public servicePatient: PatientService, fb: FormBuilder) {
+  constructor(public servicePatient: PatientService, public medicalInfoService: MedicalInfoService, 
+    public doctorService: DoctorService, fb: FormBuilder, private router: Router,
+    private serviceRevokePermission: RevokePermissionService) {
     this.myForm = fb.group({
       patientId: this.patientId,
       firstName: this.firstName,
       lastName: this.lastName,
       age: this.age,
       address: this.address,
-      phNo: this.phNo
+      phNo: this.phNo,
+      transactionId: this.transactionId,
+      timestamp: this.timestamp
     });
   };
 
   ngOnInit(): void {
     this.loadAll();
+    this.getMedicalHistory();
   }
 
   loadAll(): Promise<any> {
@@ -65,6 +70,7 @@ export class PatientComponent implements OnInit {
         tempList.push(participant);
       });
       this.allParticipants = tempList;
+      console.log(this.allParticipants);
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -74,6 +80,95 @@ export class PatientComponent implements OnInit {
         this.errorMessage = error;
       }
     });
+  }
+
+  public revokePermission(docId): void {
+    // this.router.navigate(['/RevokePermission'], {queryParams : {
+    //   medId : this.medAsset[0].medId,
+    //   docId : docId
+    // }});
+    this.serviceRevokePermission.addTransaction({
+      $class: 'org.healthcare.basic.RevokePermission',
+      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medAsset[0].medId,
+      'doctorId': docId,
+      'transactionId': this.transactionId.value,
+      'timestamp': new Date()
+    })
+    .toPromise()
+    .then(() => {
+      this.errorMessage = null;
+      this.getMedicalHistory();
+    })
+    .catch((error) => {
+      if (error === 'Server error') {
+        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+      } else {
+        this.errorMessage = error;
+      }
+    });
+  }
+
+  public givePermission(): void {
+    this.router.navigate(['/GivePermission'], {queryParams : {
+      medId : this.medAsset[0].medId
+    }});
+    
+  }
+
+  getMedicalHistory(): Promise<any> {
+    const tempList = [];
+    return this.medicalInfoService.getAll()
+    .toPromise()
+    .then((result) => {
+      result.forEach(asset => {
+        tempList.push(asset);
+      });
+      this.medAsset = tempList;
+      _.first(this.medAsset)['pastVisisArray'] = _.sortBy(_.first(this.medAsset)['pastVisisArray'], 
+        [function(asset){return moment(asset.visitDate).format('LLL')}]);
+      console.log(this.medAsset);
+      this.getAllDoctors();
+
+    })
+    .catch((error) => {
+      if (error === 'Server error') {
+        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+      } else if (error === '404 - Not Found') {
+        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        this.errorMessage = error;
+      }
+    });
+  }
+
+  getAllDoctors(): Promise<any> {
+    const tempList = [];
+    return this.doctorService.getAll()
+    .toPromise()
+    .then((result) => {
+      result.forEach(doc => {
+        tempList.push(doc);
+      });
+      this.allDoctors = tempList;
+      console.log(this.allDoctors);
+      this.getPermissionedDoctors();
+    })
+    .catch((error) => {
+      if (error === 'Server error') {
+        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+      } else if (error === '404 - Not Found') {
+        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        this.errorMessage = error;
+      }
+    });
+  }
+
+  getPermissionedDoctors(): void {
+    this.doctors = [];
+
+    _.forEach(_.first(this.medAsset)['permissionedDoctorsId'], (docId) => {
+      this.doctors.push(this.allDoctors[_.indexOf(_.map(this.allDoctors, 'doctorId'), docId)]);
+    });
+    console.log(this.doctors);
   }
 
 	/**
@@ -99,97 +194,6 @@ export class PatientComponent implements OnInit {
    */
   hasArrayValue(name: string, value: any): boolean {
     return this[name].value.indexOf(value) !== -1;
-  }
-
-  addParticipant(form: any): Promise<any> {
-    this.participant = {
-      $class: 'org.healthcare.basic.Patient',
-      'patientId': this.patientId.value,
-      'firstName': this.firstName.value,
-      'lastName': this.lastName.value,
-      'age': this.age.value,
-      'address': this.address.value,
-      'phNo': this.phNo.value
-    };
-
-    this.myForm.setValue({
-      'patientId': null,
-      'firstName': null,
-      'lastName': null,
-      'age': null,
-      'address': null,
-      'phNo': null
-    });
-
-    return this.servicePatient.addParticipant(this.participant)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-      this.myForm.setValue({
-        'patientId': null,
-        'firstName': null,
-        'lastName': null,
-        'age': null,
-        'address': null,
-        'phNo': null
-      });
-      this.loadAll(); 
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else {
-        this.errorMessage = error;
-      }
-    });
-  }
-
-
-   updateParticipant(form: any): Promise<any> {
-    this.participant = {
-      $class: 'org.healthcare.basic.Patient',
-      'firstName': this.firstName.value,
-      'lastName': this.lastName.value,
-      'age': this.age.value,
-      'address': this.address.value,
-      'phNo': this.phNo.value
-    };
-
-    return this.servicePatient.updateParticipant(form.get('patientId').value, this.participant)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-      this.loadAll();
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
-  }
-
-
-  deleteParticipant(): Promise<any> {
-
-    return this.servicePatient.deleteParticipant(this.currentId)
-    .toPromise()
-    .then(() => {
-      this.errorMessage = null;
-      this.loadAll();
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
   }
 
   setId(id: any): void {

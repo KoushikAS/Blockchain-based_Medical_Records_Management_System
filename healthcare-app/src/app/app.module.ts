@@ -15,12 +15,14 @@ import { PatientComponent } from './Patient/Patient.component';
 import { UpdateVisitComponent } from './UpdateVisit/UpdateVisit.component';
 import { GivePermissionComponent } from './GivePermission/GivePermission.component';
 import { RevokePermissionComponent } from './RevokePermission/RevokePermission.component';
-
+import { DoctorService } from './Doctor/Doctor.service';
 import { RestService } from 'services/rest.service';
 import { MedicalInfoService } from './MedicalInfo/MedicalInfo.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { RevokePermissionService } from './RevokePermission/RevokePermission.service';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   providers: [
     DataService,
     RestService,
-    MedicalInfoService
+    MedicalInfoService,
+    DoctorService,
+    RevokePermissionService
   ],
   bootstrap: [AppComponent]
 })

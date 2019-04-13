@@ -1,17 +1,4 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RevokePermissionService } from './RevokePermission.service';
@@ -31,6 +18,8 @@ export class RevokePermissionComponent implements OnInit {
   private Transaction;
   private currentId;
   private errorMessage;
+  private medId;
+  private docId;
 
   asset = new FormControl('', Validators.required);
   doctorId = new FormControl('', Validators.required);
@@ -38,8 +27,15 @@ export class RevokePermissionComponent implements OnInit {
   timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceRevokePermission: RevokePermissionService, fb: FormBuilder) {
-    this.myForm = fb.group({
+  constructor(private serviceRevokePermission: RevokePermissionService, fb: FormBuilder,
+    public router: Router, public activatedRoute: ActivatedRoute) {
+    
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.medId = params['medId'];
+        this.docId = params['docId'];
+      });
+
+      this.myForm = fb.group({
       asset: this.asset,
       doctorId: this.doctorId,
       transactionId: this.transactionId,
@@ -98,13 +94,13 @@ export class RevokePermissionComponent implements OnInit {
     return this[name].value.indexOf(value) !== -1;
   }
 
-  addTransaction(form: any): Promise<any> {
+  addTransaction(): Promise<any> {
     this.Transaction = {
       $class: 'org.healthcare.basic.RevokePermission',
-      'asset': this.asset.value,
-      'doctorId': this.doctorId.value,
+      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medId,
+      'doctorId': this.docId,
       'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'timestamp': new Date()
     };
 
     this.myForm.setValue({
@@ -124,6 +120,7 @@ export class RevokePermissionComponent implements OnInit {
         'transactionId': null,
         'timestamp': null
       });
+      this.router.navigateByUrl('/Patient');
     })
     .catch((error) => {
       if (error === 'Server error') {
