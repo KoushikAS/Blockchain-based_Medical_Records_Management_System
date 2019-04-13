@@ -83,10 +83,6 @@ export class PatientComponent implements OnInit {
   }
 
   public revokePermission(docId): void {
-    // this.router.navigate(['/RevokePermission'], {queryParams : {
-    //   medId : this.medAsset[0].medId,
-    //   docId : docId
-    // }});
     this.serviceRevokePermission.addTransaction({
       $class: 'org.healthcare.basic.RevokePermission',
       'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medAsset[0].medId,

@@ -1,18 +1,47 @@
 <div class="container">
-  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
-    <strong>Error:</strong> {{errorMessage}}
-  </div>
-  <div class="row">
-    <div class="col-md-9">
-      <h1 class="asset-title" id='assetName'>MedicalInfo</h1>
+
+  <div class="card">
+    <div class="container1">
+      <h2>My Profile</h2>
+      <ng-container>
+        <div class="row">
+          <div class="col-md-6"><strong>ID</strong></div>
+          <div class="col-md-6">{{doctor.doctorId}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Name</strong></div>
+          <div class="col-md-6">{{doctor.firstName}} {{doctor.lastName}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Hospital</strong></div>
+          <div class="col-md-6">{{doctor.hospital}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Specialisation</strong></div>
+          <div class="col-md-6">{{doctor.specialist}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Work Experience</strong></div>
+          <div class="col-md-6">{{doctor.workExp}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Phone Number</strong></div>
+          <div class="col-md-6">{{doctor.phNo}}</div>
+        </div>
+      </ng-container>
     </div>
   </div>
-  <br>
 
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-responsive">
-        
+  <div class="card">
+    <div class="container1">
+      <h2>Patients whom I can see</h2>
+      <table class="table table1 table-responsive">
+
         <thead class="thead">
           <tr class="thead-cols">
             <th class="info">Patient Id</th>
@@ -29,7 +58,7 @@
           <ng-container *ngFor="let asset of allAssets" class="table table-hover">
             <tr class="collapsible" (click)="expanded[asset.medId]=!expanded[asset.medId]">
               <td class="asset-properties expand">{{ _.last(_.split(asset.owner, '#')) }}</td>
-              <td class="asset-properties">{{ asset.owner }}</td>
+              <td class="asset-properties">{{ asset.patientName }}</td>
               <td class="asset-properties">
                 {{ _.capitalize(asset.medId) }}
               </td>
@@ -39,21 +68,26 @@
                 {{ _.capitalize(_.last(asset.pastVisitsArray).doctorName) }}
               </td>
               <td>
-                <div class="cssCircle plusSign" id="plus" (click)="updateVisit(asset.medId)" data-toggle="modal" data-target="#addTransactionModal">
+                <div class="cssCircle plusSign" id="plus" (click)="updateVisit(asset.medId)" data-toggle="modal"
+                  data-target="#addTransactionModal">
                   &#43;
                 </div>
               </td>
             </tr>
 
-            <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
-              <table class="table table-responsive" >
+            <!-- <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray"> -->
+              <table class="table table1 table-responsive" *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
                 <thead class="thead">
+                    <tr class="thead-cols">
+
                   <th class="info">Date</th>
                   <th class="info">Doctor Id</th>
                   <th class="info">Doctor Name</th>
                   <th class="info">Medication</th>
                   <th class="info">Procedure</th>
-                </thead>
+                    </tr>           
+                  </thead>
+                <tbody>
                 <tr *ngFor="let record of asset.pastVisitsArray">
                   <td class="asset-properties">{{ record.visitDate | date : 'short'}}</td>
                   <td class="asset-properties">{{ record.doctorId }}</td>
@@ -65,8 +99,9 @@
                 <tr *ngIf="!asset.pastVisitsArray">
                   <a>No data to show!</a>
                 </tr>
+              </tbody>
               </table>
-            </span>
+            <!-- </span> -->
           </ng-container>
         </tbody>
       </table>

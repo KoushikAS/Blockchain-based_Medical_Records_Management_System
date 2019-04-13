@@ -22,7 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RevokePermissionService } from './RevokePermission/RevokePermission.service';
-
+import { PatientService } from './Patient/Patient.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { RevokePermissionService } from './RevokePermission/RevokePermission.ser
     RestService,
     MedicalInfoService,
     DoctorService,
-    RevokePermissionService
+    RevokePermissionService,
+    PatientService
   ],
   bootstrap: [AppComponent]
 })

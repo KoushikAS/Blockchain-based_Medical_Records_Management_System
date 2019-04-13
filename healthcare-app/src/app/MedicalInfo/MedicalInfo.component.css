@@ -1,9 +1,26 @@
+.container1 {
+    padding: 1% 7%;
+
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 90%;
+    border-radius: 15px;
+    margin-top: 4%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
 .cssCircle {
     -webkit-border-radius: 999px;
     -moz-border-radius: 999px;
     border-radius: 999px;
-    width: 13px;
-    height: 13px;
+    width: 19px;
+    height: 19px;
     padding: 0px;
     background: #779BCA;
     border: 1px solid #003580;
@@ -17,6 +34,7 @@
     transition: color 0.2s linear;
     font: 13px Arial, sans-serif;
     margin-top: 27%;
+    margin-left:33%;
 }
 
 .cssCircle:hover {
@@ -30,7 +48,7 @@
 }
 
 .plusSign {
-    line-height: 1.1em;
+    line-height: 1.4em;
 }
 
 .minusSign:hover, .plusSign:hover {
@@ -51,14 +69,20 @@
     background-color: #F8F8F8;
 }
 
-.expand {
+.expand:hover {
     cursor: pointer;
+    text-decoration: underline;
+    color: blue;
 }
 
 .container {
     width: 100%;
     padding-left: 72px;
     padding-right: 72px;
+}
+
+.table {
+    table-layout: fixed;
 }
 
 .btn-primary {
@@ -209,9 +233,8 @@ label {
     font-family: inherit;
     font-size: 14px;
     color: #848484;
-    line-height: 42px;
-    white-space: nowrap;
-    overflow: hidden;
+    line-height: 19px;
+    word-wrap: break-word;
     text-overflow: ellipsis;
     max-width: 250px;
 }

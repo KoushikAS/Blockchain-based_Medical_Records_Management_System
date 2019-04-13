@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
     return this.restService.loginInDoctor(this.signUp)
     .then(() => {
       this.loading=false;
-      this.router.navigate(['/MedicalInfo']);
+      this.router.navigate(['/MedicalInfo'], {queryParams : {
+        docId : this.signUp.id
+      }});
     });
 
   }
