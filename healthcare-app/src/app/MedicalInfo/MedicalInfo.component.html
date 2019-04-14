@@ -76,31 +76,30 @@
             </tr>
 
             <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
-              <table class="table table1 table-responsive">
-                <thead class="thead">
-                    <tr class="thead-cols">
+              <div class="row ">
+                <div class="row">
+                  <div class="col-md-2 info">Date</div>
+                  <div class="col-md-2 info">Doctor Id</div>
+                  <div class="col-md-2 info">Doctor Name</div>
+                  <div class="col-md-3 info">Medication</div>
+                  <div class="col-md-3 info">Procedure</div>
+                </div>
 
-                  <th class="info">Date</th>
-                  <th class="info">Doctor Id</th>
-                  <th class="info">Doctor Name</th>
-                  <th class="info">Medication</th>
-                  <th class="info">Procedure</th>
-                    </tr>           
-                  </thead>
-                <tbody>
-                <tr *ngFor="let record of asset.pastVisitsArray">
-                  <td class="asset-properties">{{ record.visitDate | date : 'short'}}</td>
-                  <td class="asset-properties">{{ record.doctorId }}</td>
-                  <td class="asset-properties">{{ record.doctorName }}</td>
-                  <td class="asset-properties">{{ _.capitalize(record.medicationPrescribed) }}</td>
-                  <td class="asset-properties">{{ _.capitalize(record.procedure) }}</td>
-                </tr>
+                <ng-container *ngFor="let record of asset.pastVisitsArray">
+                  <div class="row">
+                    <div class="col-md-2 asset-properties">{{ record.visitDate | date : 'short' }}</div>
+                    <div class="col-md-2 asset-properties">{{ record.doctorId }}</div>
+                    <div class="col-md-2 asset-properties">{{ record.doctorName }}</div>
+                    <div class="col-md-3 asset-properties">{{ _.capitalize(record.medicationPrescribed) }}</div>
+                    <div class="col-md-3 asset-properties">{{ _.capitalize(record.procedure) }}</div>
+                  </div>
+                <hr>
 
-                <tr *ngIf="!asset.pastVisitsArray">
-                  <a>No data to show!</a>
-                </tr>
-              </tbody>
-              </table>
+                </ng-container>
+              </div>
+            </span>
+            <span *ngIf="expanded[asset.medId] && !asset.pastVisitsArray">
+              <a>No data to show!</a>
             </span>
           </ng-container>
         </tbody>
