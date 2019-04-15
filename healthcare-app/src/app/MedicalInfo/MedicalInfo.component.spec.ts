@@ -107,7 +107,7 @@ describe('MedicalInfoComponent', () => {
 
     component.setId('id');
     
-    component.deleteAsset();
+    // component.deleteAsset();
 
     tick();
 

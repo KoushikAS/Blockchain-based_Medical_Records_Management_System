@@ -38,7 +38,7 @@ export class PatientComponent implements OnInit {
   _ = _;
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
-  moment = moment;
+  // moment = moment;
 
   constructor(public servicePatient: PatientService, public medicalInfoService: MedicalInfoService, 
     public doctorService: DoctorService, fb: FormBuilder, private router: Router,
@@ -85,7 +85,7 @@ export class PatientComponent implements OnInit {
   public revokePermission(docId): void {
     this.serviceRevokePermission.addTransaction({
       $class: 'org.healthcare.basic.RevokePermission',
-      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medAsset[0].medId,
+      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medAsset.medId,
       'doctorId': docId,
       'transactionId': this.transactionId.value,
       'timestamp': new Date()
@@ -105,8 +105,9 @@ export class PatientComponent implements OnInit {
   }
 
   public givePermission(): void {
+    console.log(this.medAsset);
     this.router.navigate(['/GivePermission'], {queryParams : {
-      medId : this.medAsset[0].medId
+      medId : this.medAsset.medId
     }});
     
   }
@@ -121,7 +122,7 @@ export class PatientComponent implements OnInit {
       });
       this.medAsset = _.first(tempList);
       this.medAsset['pastVisisArray'] = _.sortBy(this.medAsset['pastVisisArray'], 
-        [function(asset){return moment(asset.visitDate).format('LLL')}]);
+        [function(asset){return this.moment(asset.visitDate).format('LLL')}]);
       console.log(this.medAsset);
       this.getAllDoctors();
 

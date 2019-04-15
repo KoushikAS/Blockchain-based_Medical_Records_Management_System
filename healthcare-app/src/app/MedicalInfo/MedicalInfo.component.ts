@@ -120,7 +120,8 @@ export class MedicalInfoComponent implements OnInit {
       result.forEach((doc) => {
         tempList.push(doc);
       });
-      this.doctor = tempList[_.indexOf(_.map(tempList, 'doctorId'), this.docId)];
+      // this.doctor = tempList[_.indexOf(_.map(tempList, 'doctorId'), this.docId)];
+      this.doctor = _.first(tempList);
       console.log(this.doctor);
     })
     .catch((error) => {

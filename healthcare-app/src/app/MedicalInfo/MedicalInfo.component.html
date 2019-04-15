@@ -85,7 +85,7 @@
                   <div class="col-md-3 info">Procedure</div>
                 </div>
 
-                <ng-container *ngFor="let record of asset.pastVisitsArray">
+                <ng-container *ngFor="let record of allAssets[0].pastVisitsArray">
                   <div class="row">
                     <div class="col-md-2 asset-properties">{{ record.visitDate | date : 'short' }}</div>
                     <div class="col-md-2 asset-properties">{{ record.doctorId }}</div>
