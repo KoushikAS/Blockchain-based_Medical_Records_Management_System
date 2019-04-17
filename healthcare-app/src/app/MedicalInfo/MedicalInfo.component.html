@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" style="margin-bottom:3%">
     <div class="container1">
       <h2>Patients whom I can see</h2>
       <table class="table table1 table-responsive">
@@ -56,8 +56,9 @@
 
         <tbody>
           <ng-container *ngFor="let asset of allAssets" class="table table-hover">
-            <tr class="collapsible" (click)="expanded[asset.medId]=!expanded[asset.medId]">
-              <td class="asset-properties expand">{{ _.last(_.split(asset.owner, '#')) }}</td>
+            <tr class="collapsible">
+              <td class="asset-properties expand" (click)="expanded[asset.medId]=!expanded[asset.medId]">
+                {{ _.last(_.split(asset.owner, '#')) }}</td>
               <td class="asset-properties">{{ asset.patientName }}</td>
               <td class="asset-properties">
                 {{ _.capitalize(asset.medId) }}
@@ -75,15 +76,16 @@
               </td>
             </tr>
 
-            <span *ngIf="expanded[asset.medId] && asset.pastVisitsArray">
+            <div *ngIf="expanded[asset.medId] && asset.pastVisitsArray" class="table-prop">
               <div class="row ">
                 <div class="row">
-                  <div class="col-md-2 info">Date</div>
-                  <div class="col-md-2 info">Doctor Id</div>
-                  <div class="col-md-2 info">Doctor Name</div>
-                  <div class="col-md-3 info">Medication</div>
-                  <div class="col-md-3 info">Procedure</div>
+                  <div class="col-md-2 info"><strong>Date</strong></div>
+                  <div class="col-md-2 info"><strong>Doctor Id</strong></div>
+                  <div class="col-md-2 info"><strong>Doctor Name</strong></div>
+                  <div class="col-md-3 info"><strong>Medication</strong></div>
+                  <div class="col-md-3 info"><strong>Procedure</strong></div>
                 </div>
+                <hr>
 
                 <ng-container *ngFor="let record of allAssets[0].pastVisitsArray">
                   <div class="row">
@@ -97,7 +99,7 @@
 
                 </ng-container>
               </div>
-            </span>
+            </div>
             <span *ngIf="expanded[asset.medId] && !asset.pastVisitsArray">
               <a>No data to show!</a>
             </span>
