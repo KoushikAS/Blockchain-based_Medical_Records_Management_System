@@ -26,7 +26,7 @@ export class PatientComponent implements OnInit {
   private errorMessage;
   private medAsset;
   private allDoctors;
-  private Transaction;
+  private Transaction;  
   private doctors;
 
   patientId = new FormControl('', Validators.required);
@@ -53,11 +53,13 @@ export class PatientComponent implements OnInit {
       transactionId: this.transactionId,
       timestamp: this.timestamp
     });
+
+    this.loadAll();
+    this.getMedicalHistory();
+
   };
 
   ngOnInit(): void {
-    this.loadAll();
-    this.getMedicalHistory();
   }
 
   loadAll(): Promise<any> {

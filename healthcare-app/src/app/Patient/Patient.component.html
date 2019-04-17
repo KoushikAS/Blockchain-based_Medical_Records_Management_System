@@ -98,16 +98,23 @@
         </thead>
 
         <tbody>
-          <ng-container *ngFor="let history of medAsset.pastVisitsArray" class="table table-hover">
-            <tr>
-              <td class="asset-properties">{{ history.doctorId }}</td>
-              <td class="asset-properties">{{ _.capitalize(history.doctorName) }}</td>
-              <td class="asset-properties">
-                {{ _.capitalize(history.medicationPrescribed) }}
-              </td>
-              <td class="asset-properties">{{ _.capitalize(history.procedure) }}</td>
-              <td class="asset-properties">{{ history.visitDate  | date : 'short' }}</td>
-            </tr>
+          <ng-container *ngIf="medAsset !== null && medAsset.pastVisitsArray">
+            <div *ngFor="let history of medAsset.pastVisitsArray" class="table table-hover">
+              <tr>
+                <td class="asset-properties">{{ history.doctorId }}</td>
+                <td class="asset-properties">{{ _.capitalize(history.doctorName) }}</td>
+                <td class="asset-properties">
+                  {{ _.capitalize(history.medicationPrescribed) }}
+                </td>
+                <td class="asset-properties">{{ _.capitalize(history.procedure) }}</td>
+                <td class="asset-properties">{{ history.visitDate  | date : 'short' }}</td>
+              </tr>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!medAsset && !medAsset.pastVisitsArray">
+            <div>
+              <a>No Data Available</a>
+            </div>
           </ng-container>
         </tbody>
       </table>

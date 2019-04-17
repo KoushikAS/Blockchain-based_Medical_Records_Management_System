@@ -50,6 +50,7 @@ export class MedicalInfoComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.docId = params['docId'];
     });
+    this.getDoctorInfo();
 
   };
 
@@ -72,7 +73,6 @@ export class MedicalInfoComponent implements OnInit {
       this.allAssets = tempList;
       console.log(this.allAssets);
       this.getPatientName();
-      this.getDoctorInfo();
       
     })
     .catch((error) => {
@@ -100,9 +100,7 @@ export class MedicalInfoComponent implements OnInit {
         asset.patientName = patientList[index]['firstName'] + ' ' + patientList[index]['lastName'];
       });
       console.log(this.allAssets);
-    });
-
-    
+    });   
   }
 
   updateVisit(medId): void {
