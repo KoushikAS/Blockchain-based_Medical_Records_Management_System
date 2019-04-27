@@ -6,60 +6,52 @@ participant Doctor identified by doctorId {
   o String doctorId
   o String firstName
   o String lastName
+  o String specialist
+  o String workExp
+  o String hospital
+  o String phNo
 }
 
 participant Patient identified by patientId {
   o String patientId
   o String firstName
   o String lastName
+  o String age
+  o String address
+  o String phNo
 }
 
 asset MedicalInfo identified by medId {
   --> Patient owner 
   o String medId
+  o String allergy optional
   o String medication
   o Visits[] pastVisitsArray
+  o String[] permissionedDoctorsId
 }
 
 concept Visits {
   o DateTime visitDate
-  o String procedure
   o String doctorId
+  o String doctorName
+  o String procedure  
   o String medicationPrescribed
 }
 
-transaction UpdateMedication {
-  --> MedicalInfo asset 
-  o String newMedication
-}
 
 transaction UpdateVisit {
   --> MedicalInfo asset 
-  o DateTime visitDate
   o String procedure
-  o String doctorId
   o String medicationPrescribed
 }
 
-// participant SampleParticipant identified by participantId {
-//   o String participantId
-//   o String firstName
-//   o String lastName
-// }
+transaction GivePermission {
+  --> MedicalInfo asset
+  o String doctorId
+}
 
-// asset SampleAsset identified by assetId {
-//   o String assetId
-//   --> SampleParticipant owner
-//   o String value
-// }
+transaction RevokePermission {
+  --> MedicalInfo asset
+  o String doctorId
+}
 
-// transaction SampleTransaction {
-//   --> SampleAsset asset
-//   o String newValue
-// }
-
-// event SampleEvent {
-//   --> SampleAsset asset
-//   o String oldValue
-//   o String newValue
-// }

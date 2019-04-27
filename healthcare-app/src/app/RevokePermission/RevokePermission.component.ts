@@ -1,29 +1,16 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { UpdateMedicationService } from './UpdateMedication.service';
+import { RevokePermissionService } from './RevokePermission.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'app-updatemedication',
-  templateUrl: './UpdateMedication.component.html',
-  styleUrls: ['./UpdateMedication.component.css'],
-  providers: [UpdateMedicationService]
+  selector: 'app-revokepermission',
+  templateUrl: './RevokePermission.component.html',
+  styleUrls: ['./RevokePermission.component.css'],
+  providers: [RevokePermissionService]
 })
-export class UpdateMedicationComponent implements OnInit {
+export class RevokePermissionComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -31,17 +18,26 @@ export class UpdateMedicationComponent implements OnInit {
   private Transaction;
   private currentId;
   private errorMessage;
+  private medId;
+  private docId;
 
   asset = new FormControl('', Validators.required);
-  newMedication = new FormControl('', Validators.required);
+  doctorId = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceUpdateMedication: UpdateMedicationService, fb: FormBuilder) {
-    this.myForm = fb.group({
+  constructor(private serviceRevokePermission: RevokePermissionService, fb: FormBuilder,
+    public router: Router, public activatedRoute: ActivatedRoute) {
+    
+      this.activatedRoute.queryParams.subscribe((params) => {
+        this.medId = params['medId'];
+        this.docId = params['docId'];
+      });
+
+      this.myForm = fb.group({
       asset: this.asset,
-      newMedication: this.newMedication,
+      doctorId: this.doctorId,
       transactionId: this.transactionId,
       timestamp: this.timestamp
     });
@@ -53,7 +49,7 @@ export class UpdateMedicationComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceUpdateMedication.getAll()
+    return this.serviceRevokePermission.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -98,32 +94,33 @@ export class UpdateMedicationComponent implements OnInit {
     return this[name].value.indexOf(value) !== -1;
   }
 
-  addTransaction(form: any): Promise<any> {
+  addTransaction(): Promise<any> {
     this.Transaction = {
-      $class: 'org.healthcare.basic.UpdateMedication',
-      'asset': this.asset.value,
-      'newMedication': this.newMedication.value,
+      $class: 'org.healthcare.basic.RevokePermission',
+      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medId,
+      'doctorId': this.docId,
       'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'timestamp': new Date()
     };
 
     this.myForm.setValue({
       'asset': null,
-      'newMedication': null,
+      'doctorId': null,
       'transactionId': null,
       'timestamp': null
     });
 
-    return this.serviceUpdateMedication.addTransaction(this.Transaction)
+    return this.serviceRevokePermission.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
         'asset': null,
-        'newMedication': null,
+        'doctorId': null,
         'transactionId': null,
         'timestamp': null
       });
+      this.router.navigateByUrl('/Patient');
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -136,13 +133,13 @@ export class UpdateMedicationComponent implements OnInit {
 
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
-      $class: 'org.healthcare.basic.UpdateMedication',
+      $class: 'org.healthcare.basic.RevokePermission',
       'asset': this.asset.value,
-      'newMedication': this.newMedication.value,
+      'doctorId': this.doctorId.value,
       'timestamp': this.timestamp.value
     };
 
-    return this.serviceUpdateMedication.updateTransaction(form.get('transactionId').value, this.Transaction)
+    return this.serviceRevokePermission.updateTransaction(form.get('transactionId').value, this.Transaction)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -160,7 +157,7 @@ export class UpdateMedicationComponent implements OnInit {
 
   deleteTransaction(): Promise<any> {
 
-    return this.serviceUpdateMedication.deleteTransaction(this.currentId)
+    return this.serviceRevokePermission.deleteTransaction(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -182,13 +179,13 @@ export class UpdateMedicationComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceUpdateMedication.getTransaction(id)
+    return this.serviceRevokePermission.getTransaction(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
         'asset': null,
-        'newMedication': null,
+        'doctorId': null,
         'transactionId': null,
         'timestamp': null
       };
@@ -199,10 +196,10 @@ export class UpdateMedicationComponent implements OnInit {
         formObject.asset = null;
       }
 
-      if (result.newMedication) {
-        formObject.newMedication = result.newMedication;
+      if (result.doctorId) {
+        formObject.doctorId = result.doctorId;
       } else {
-        formObject.newMedication = null;
+        formObject.doctorId = null;
       }
 
       if (result.transactionId) {
@@ -234,7 +231,7 @@ export class UpdateMedicationComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'asset': null,
-      'newMedication': null,
+      'doctorId': null,
       'transactionId': null,
       'timestamp': null
     });

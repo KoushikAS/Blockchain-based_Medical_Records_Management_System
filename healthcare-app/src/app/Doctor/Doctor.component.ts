@@ -1,16 +1,3 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -35,13 +22,21 @@ export class DoctorComponent implements OnInit {
   doctorId = new FormControl('', Validators.required);
   firstName = new FormControl('', Validators.required);
   lastName = new FormControl('', Validators.required);
+  specialist = new FormControl('', Validators.required);
+  workExp = new FormControl('', Validators.required);
+  hospital = new FormControl('', Validators.required);
+  phNo = new FormControl('', Validators.required);
 
 
   constructor(public serviceDoctor: DoctorService, fb: FormBuilder) {
     this.myForm = fb.group({
       doctorId: this.doctorId,
       firstName: this.firstName,
-      lastName: this.lastName
+      lastName: this.lastName,
+      specialist: this.specialist,
+      workExp: this.workExp,
+      hospital: this.hospital,
+      phNo: this.phNo
     });
   };
 
@@ -100,13 +95,21 @@ export class DoctorComponent implements OnInit {
       $class: 'org.healthcare.basic.Doctor',
       'doctorId': this.doctorId.value,
       'firstName': this.firstName.value,
-      'lastName': this.lastName.value
+      'lastName': this.lastName.value,
+      'specialist': this.specialist.value,
+      'workExp': this.workExp.value,
+      'hospital': this.hospital.value,
+      'phNo': this.phNo.value
     };
 
     this.myForm.setValue({
       'doctorId': null,
       'firstName': null,
-      'lastName': null
+      'lastName': null,
+      'specialist': null,
+      'workExp': null,
+      'hospital': null,
+      'phNo': null
     });
 
     return this.serviceDoctor.addParticipant(this.participant)
@@ -116,7 +119,11 @@ export class DoctorComponent implements OnInit {
       this.myForm.setValue({
         'doctorId': null,
         'firstName': null,
-        'lastName': null
+        'lastName': null,
+        'specialist': null,
+        'workExp': null,
+        'hospital': null,
+        'phNo': null
       });
       this.loadAll(); 
     })
@@ -134,7 +141,11 @@ export class DoctorComponent implements OnInit {
     this.participant = {
       $class: 'org.healthcare.basic.Doctor',
       'firstName': this.firstName.value,
-      'lastName': this.lastName.value
+      'lastName': this.lastName.value,
+      'specialist': this.specialist.value,
+      'workExp': this.workExp.value,
+      'hospital': this.hospital.value,
+      'phNo': this.phNo.value
     };
 
     return this.serviceDoctor.updateParticipant(form.get('doctorId').value, this.participant)
@@ -187,7 +198,11 @@ export class DoctorComponent implements OnInit {
       const formObject = {
         'doctorId': null,
         'firstName': null,
-        'lastName': null
+        'lastName': null,
+        'specialist': null,
+        'workExp': null,
+        'hospital': null,
+        'phNo': null
       };
 
       if (result.doctorId) {
@@ -208,6 +223,30 @@ export class DoctorComponent implements OnInit {
         formObject.lastName = null;
       }
 
+      if (result.specialist) {
+        formObject.specialist = result.specialist;
+      } else {
+        formObject.specialist = null;
+      }
+
+      if (result.workExp) {
+        formObject.workExp = result.workExp;
+      } else {
+        formObject.workExp = null;
+      }
+
+      if (result.hospital) {
+        formObject.hospital = result.hospital;
+      } else {
+        formObject.hospital = null;
+      }
+
+      if (result.phNo) {
+        formObject.phNo = result.phNo;
+      } else {
+        formObject.phNo = null;
+      }
+
       this.myForm.setValue(formObject);
     })
     .catch((error) => {
@@ -226,7 +265,11 @@ export class DoctorComponent implements OnInit {
     this.myForm.setValue({
       'doctorId': null,
       'firstName': null,
-      'lastName': null
+      'lastName': null,
+      'specialist': null,
+      'workExp': null,
+      'hospital': null,
+      'phNo': null
     });
   }
 }

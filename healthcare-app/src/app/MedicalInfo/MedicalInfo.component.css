@@ -1,20 +1,97 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+.container1 {
+    padding: 1% 7%;
+
+}
+.row {
+    margin-left:2%;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 90%;
+    border-radius: 15px;
+    margin-top: 4%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cssCircle {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    width: 19px;
+    height: 19px;
+    padding: 0px;
+    background: #779BCA;
+    border: 1px solid #003580;
+    color: #003580;
+    text-align: center;
+    -webkit-transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear;
+    -ms-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+    transition: color 0.2s linear;
+    font: 13px Arial, sans-serif;
+    margin-top: 27%;
+    margin-left:33%;
+}
+
+.cssCircle:hover {
+    background: #3F69A0;
+    cursor: pointer;
+}
+
+.minusSign {
+    line-height: 0.9em;
+    margin-bottom: 1px;
+}
+
+.plusSign {
+    line-height: 1.4em;
+}
+
+.table-prop {
+    display: inline-block;
+    width: max-content;
+    margin-left: 46%;
+}
+
+.minusSign:hover, .plusSign:hover {
+    color: white;
+}
+
+.collapsible {
+    color: #444;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #F8F8F8;
+}
+
+.expand:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
 .container {
     width: 100%;
     padding-left: 72px;
     padding-right: 72px;
+}
+
+.table {
+    table-layout: fixed;
 }
 
 .btn-primary {
@@ -31,13 +108,14 @@
     margin-top: 5%;
 }
 
-.table > thead > tr > th {
+.table>thead>tr>th {
     border-bottom: 1px solid #EAEAEA;
 }
 
-.table > thead > tr > th.info {
+.table>thead>tr>th.info {
     background: #FFF;
 }
+
 .modal-title {
     font-family: inherit;
     font-size: 24px;
@@ -46,47 +124,52 @@
     line-height: 28px;
     padding-top: 15px;
 }
+
 .modal-intro {
     font-family: inherit;
     font-size: 14px;
     color: #545454;
     line-height: 20px;
     padding-top: 15px;
-
 }
-.modal-header{
+
+.modal-header {
     background: #F4F4F4;
     border-radius: 5px;
     border-bottom: 1px solid #F4F4F4;
 }
-.modal-body{
+
+.modal-body {
     background: #F4F4F4;
     border-radius: 5px;
 }
-.modal-footer{
+
+.modal-footer {
     background: #F4F4F4;
     border-radius: 5px;
     border-top: 1px solid #f4f4f4
 }
-.form-control{
+
+.form-control {
     color: #393939;
     height: 42px;
     border: 1px solid #ffffff;
-    box-shadow: inset 0 0px 0px rgba(0,0,0,.075); 
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
     border-radius: 4px;
     resize: none;
-
 }
+
 label {
     color: #545454;
 }
-.modal-content{
+
+.modal-content {
     margin-top: 15%;
     margin-bottom: 15%;
     box-shadow: 0 0px 0px;
     border: 0px;
-
 }
+
 .btn-default {
     color: #844EF4;
     background-color: #ffffff;
@@ -95,7 +178,8 @@ label {
     width: 76px;
     height: 40px;
 }
-.btn-danger{
+
+.btn-danger {
     color: #ffffff;
     background-color: #844AE4;
     border-color: #844AE4;
@@ -103,10 +187,12 @@ label {
     width: 76px;
     height: 40px;
 }
-.btn-danger:focus{
+
+.btn-danger:focus {
     background-color: #4D21A8;
     border-color: #4D21A8;
 }
+
 .btn-success {
     color: #ffffff;
     background-color: #844AE4;
@@ -115,30 +201,35 @@ label {
     width: 76px;
     height: 40px;
 }
-.btn-success:focus{
+
+.btn-success:focus {
     background-color: #4D21A8;
     border-color: #4D21A8;
 }
-.btn-default:focus{
+
+.btn-default:focus {
     background-color: #fff;
-    border-color: #4d21a8;  
-    color: #4d21a8;      
+    border-color: #4d21a8;
+    color: #4d21a8;
 }
-.asset-title{
+
+.asset-title {
     font-family: inherit;
     font-size: 24px;
     color: #4E4E4E;
     letter-spacing: 0.28px;
     line-height: 28px;
 }
-.info{
+
+.info {
     font-family: inherit;
     font-size: 14px;
     color: #343C41;
     letter-spacing: 0.2px;
     line-height: 24px;
 }
-.info-actions{
+
+.info-actions {
     font-family: inherit;
     font-size: 14px;
     color: #343C41;
@@ -146,20 +237,44 @@ label {
     line-height: 24px;
     padding-left: 24px;
 }
-.asset-properties{
+
+.asset-properties {
     font-family: inherit;
     font-size: 14px;
     color: #848484;
-    line-height: 42px;
-    white-space: nowrap;
-    overflow: hidden;
+    line-height: 19px;
+    word-wrap: break-word;
     text-overflow: ellipsis;
     max-width: 250px;
 }
-.plus-svg{
+
+.plus-svg {
     color: #fff;
     fill: currentColor;
 }
+
+.collapsible {
+    background-color: #fff;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #f5f2f0;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
 
 /***.asset-properties:hover, .asset-properties:hover span{  
 overflow: visible;
@@ -173,5 +288,3 @@ padding: 3px;
 margin-left: -4px;
 }
 ***/
-
-

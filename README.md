@@ -11,9 +11,12 @@ sudo ./createPeerAdminCard.sh
 
 
 2)To intall and deploy the healthcare network  (Go to healthcare folder) 
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.11.bna
 
-sudo composer network start --networkName healthcare --networkVersion 0.0.11 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+composer archive create -t dir -n . 
+
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
+
+sudo composer network start --networkName healthcare --networkVersion 0.0.12 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 sudo composer card import --file networkadmin.card
 
@@ -33,7 +36,7 @@ export COMPOSER_PROVIDERS='{
     "clientSecret": "fb5076fa93783b8dd9b7d6ab62f8ebbe9938438e",
     "authPath": "/auth/github",
     "callbackURL": "/auth/github/callback",
-    "successRedirect": "http://localhost:4200?loggedIn=true",
+    "successRedirect": "http://localhost:4200/login",
     "failureRedirect": "/"
   }
 }'
@@ -42,6 +45,8 @@ sudo -E composer-rest-server -c admin@healthcare -n never  -m true -a true
 
 
 5)To start the frontend of the app in port 4200 (Go to healthcare folder) open a new terminal:
+npm install lodash  (only once)
+npm i --save-dev @types/lodash@4.14.121   (only once)
 cd healthcare-app
 npm start
 
@@ -81,8 +86,8 @@ To upgrade the network :
 2) Run following  commands to deploy the new network :
 
 sudo composer archive create --sourceType dir --sourceName .
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
-sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.12
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.13.bna
+sudo composer network upgrade -c PeerAdmin@hlfv1 -n healthcare -V 0.0.13
 
 ---------------------------------------------------------------------------------------------------------
 Important sites :

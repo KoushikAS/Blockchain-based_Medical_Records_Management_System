@@ -1,16 +1,4 @@
-<!--
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
--->
 <div class="modal fade" id="addParticipantModal" tabindex="-1" role="dialog" aria-labelledby="addParticipantModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -50,6 +38,46 @@
                   <label for="lastName">lastName</label>
                   
                     <input formControlName="lastName" type="text" class="form-control">
+                  
+                </div>
+              
+            
+  
+              
+                <div class="form-group text-left">
+                  <label for="specialist">specialist</label>
+                  
+                    <input formControlName="specialist" type="text" class="form-control">
+                  
+                </div>
+              
+            
+  
+              
+                <div class="form-group text-left">
+                  <label for="workExp">workExp</label>
+                  
+                    <input formControlName="workExp" type="text" class="form-control">
+                  
+                </div>
+              
+            
+  
+              
+                <div class="form-group text-left">
+                  <label for="hospital">hospital</label>
+                  
+                    <input formControlName="hospital" type="text" class="form-control">
+                  
+                </div>
+              
+            
+  
+              
+                <div class="form-group text-left">
+                  <label for="phNo">phNo</label>
+                  
+                    <input formControlName="phNo" type="text" class="form-control">
                   
                 </div>
               
@@ -104,6 +132,42 @@
   
                 
                   <input [ngModel]="lastName"formControlName="lastName" type="text" class="form-control">
+                
+  
+              </div>
+            
+              <div class="form-group text-left">
+                <label for="specialist">specialist</label>
+  
+                
+                  <input [ngModel]="specialist"formControlName="specialist" type="text" class="form-control">
+                
+  
+              </div>
+            
+              <div class="form-group text-left">
+                <label for="workExp">workExp</label>
+  
+                
+                  <input [ngModel]="workExp"formControlName="workExp" type="text" class="form-control">
+                
+  
+              </div>
+            
+              <div class="form-group text-left">
+                <label for="hospital">hospital</label>
+  
+                
+                  <input [ngModel]="hospital"formControlName="hospital" type="text" class="form-control">
+                
+  
+              </div>
+            
+              <div class="form-group text-left">
+                <label for="phNo">phNo</label>
+  
+                
+                  <input [ngModel]="phNo"formControlName="phNo" type="text" class="form-control">
                 
   
               </div>
@@ -185,6 +249,14 @@
               
                   <th class="info">lastName</th>
               
+                  <th class="info">specialist</th>
+              
+                  <th class="info">workExp</th>
+              
+                  <th class="info">hospital</th>
+              
+                  <th class="info">phNo</th>
+              
                 <th class="info-actions">Actions</th>
             </tr>
           </thead>
@@ -197,6 +269,14 @@
                   <td class="participant-properties">{{participant.firstName}}</td>
               
                   <td class="participant-properties">{{participant.lastName}}</td>
+              
+                  <td class="participant-properties">{{participant.specialist}}</td>
+              
+                  <td class="participant-properties">{{participant.workExp}}</td>
+              
+                  <td class="participant-properties">{{participant.hospital}}</td>
+              
+                  <td class="participant-properties">{{participant.phNo}}</td>
               
               <td>
                 <button (click)="getForm(participant.doctorId);" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateParticipantModal">

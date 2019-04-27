@@ -1,21 +1,9 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UpdateVisitService } from './UpdateVisit.service';
 import 'rxjs/add/operator/toPromise';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-updatevisit',
@@ -31,22 +19,23 @@ export class UpdateVisitComponent implements OnInit {
   private Transaction;
   private currentId;
   private errorMessage;
+  private medId;
 
   asset = new FormControl('', Validators.required);
-  visitDate = new FormControl('', Validators.required);
   procedure = new FormControl('', Validators.required);
-  doctorId = new FormControl('', Validators.required);
   medicationPrescribed = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
 
 
-  constructor(private serviceUpdateVisit: UpdateVisitService, fb: FormBuilder) {
+  constructor(private serviceUpdateVisit: UpdateVisitService, fb: FormBuilder, public router: Router, public activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.medId = params['medId'];
+    });
+
     this.myForm = fb.group({
-      asset: this.asset,
-      visitDate: this.visitDate,
+      asset: this.medId,
       procedure: this.procedure,
-      doctorId: this.doctorId,
       medicationPrescribed: this.medicationPrescribed,
       transactionId: this.transactionId,
       timestamp: this.timestamp
@@ -107,20 +96,16 @@ export class UpdateVisitComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.healthcare.basic.UpdateVisit',
-      'asset': this.asset.value,
-      'visitDate': this.visitDate.value,
+      'asset': 'resource:org.healthcare.basic.MedicalInfo#' + this.medId,
       'procedure': this.procedure.value,
-      'doctorId': this.doctorId.value,
       'medicationPrescribed': this.medicationPrescribed.value,
       'transactionId': this.transactionId.value,
-      'timestamp': this.timestamp.value
+      'timestamp': new Date()
     };
 
     this.myForm.setValue({
-      'asset': null,
-      'visitDate': null,
+      'asset': this.medId,
       'procedure': null,
-      'doctorId': null,
       'medicationPrescribed': null,
       'transactionId': null,
       'timestamp': null
@@ -131,14 +116,13 @@ export class UpdateVisitComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'asset': null,
-        'visitDate': null,
+        'asset': this.medId,
         'procedure': null,
-        'doctorId': null,
         'medicationPrescribed': null,
         'transactionId': null,
         'timestamp': null
       });
+      this.router.navigateByUrl('/MedicalInfo');
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -152,10 +136,8 @@ export class UpdateVisitComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.healthcare.basic.UpdateVisit',
-      'asset': this.asset.value,
-      'visitDate': this.visitDate.value,
+      'asset': this.medId,
       'procedure': this.procedure.value,
-      'doctorId': this.doctorId.value,
       'medicationPrescribed': this.medicationPrescribed.value,
       'timestamp': this.timestamp.value
     };
@@ -205,10 +187,8 @@ export class UpdateVisitComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'asset': null,
-        'visitDate': null,
+        'asset': this.medId,
         'procedure': null,
-        'doctorId': null,
         'medicationPrescribed': null,
         'transactionId': null,
         'timestamp': null
@@ -220,22 +200,10 @@ export class UpdateVisitComponent implements OnInit {
         formObject.asset = null;
       }
 
-      if (result.visitDate) {
-        formObject.visitDate = result.visitDate;
-      } else {
-        formObject.visitDate = null;
-      }
-
       if (result.procedure) {
         formObject.procedure = result.procedure;
       } else {
         formObject.procedure = null;
-      }
-
-      if (result.doctorId) {
-        formObject.doctorId = result.doctorId;
-      } else {
-        formObject.doctorId = null;
       }
 
       if (result.medicationPrescribed) {
@@ -272,10 +240,8 @@ export class UpdateVisitComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'asset': null,
-      'visitDate': null,
+      'asset': this.medId,
       'procedure': null,
-      'doctorId': null,
       'medicationPrescribed': null,
       'transactionId': null,
       'timestamp': null
