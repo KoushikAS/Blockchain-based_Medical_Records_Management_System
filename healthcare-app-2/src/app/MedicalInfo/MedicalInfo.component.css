@@ -1,0 +1,290 @@
+.container1 {
+    padding: 1% 7%;
+
+}
+.row {
+    margin-left:2%;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 90%;
+    border-radius: 15px;
+    margin-top: 4%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.cssCircle {
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    width: 19px;
+    height: 19px;
+    padding: 0px;
+    background: #779BCA;
+    border: 1px solid #003580;
+    color: #003580;
+    text-align: center;
+    -webkit-transition: background 0.2s linear;
+    -moz-transition: background 0.2s linear;
+    -ms-transition: background 0.2s linear;
+    -o-transition: background 0.2s linear;
+    transition: background 0.2s linear;
+    transition: color 0.2s linear;
+    font: 13px Arial, sans-serif;
+    margin-top: 27%;
+    margin-left:33%;
+}
+
+.cssCircle:hover {
+    background: #3F69A0;
+    cursor: pointer;
+}
+
+.minusSign {
+    line-height: 0.9em;
+    margin-bottom: 1px;
+}
+
+.plusSign {
+    line-height: 1.4em;
+}
+
+.table-prop {
+    display: inline-block;
+    width: max-content;
+    margin-left: 46%;
+}
+
+.minusSign:hover, .plusSign:hover {
+    color: white;
+}
+
+.collapsible {
+    color: #444;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active, .collapsible:hover {
+    background-color: #F8F8F8;
+}
+
+.expand:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.container {
+    width: 100%;
+    padding-left: 72px;
+    padding-right: 72px;
+}
+
+.table {
+    table-layout: fixed;
+}
+
+.btn-primary {
+    background: #844AE4;
+    border-radius: 4px;
+    border: 0px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 10px;
+    height: 40px;
+    width: 153px;
+    float: right;
+    margin-top: 5%;
+}
+
+.table>thead>tr>th {
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.table>thead>tr>th.info {
+    background: #FFF;
+}
+
+.modal-title {
+    font-family: inherit;
+    font-size: 24px;
+    color: #4E4E4E;
+    letter-spacing: 0.28px;
+    line-height: 28px;
+    padding-top: 15px;
+}
+
+.modal-intro {
+    font-family: inherit;
+    font-size: 14px;
+    color: #545454;
+    line-height: 20px;
+    padding-top: 15px;
+}
+
+.modal-header {
+    background: #F4F4F4;
+    border-radius: 5px;
+    border-bottom: 1px solid #F4F4F4;
+}
+
+.modal-body {
+    background: #F4F4F4;
+    border-radius: 5px;
+}
+
+.modal-footer {
+    background: #F4F4F4;
+    border-radius: 5px;
+    border-top: 1px solid #f4f4f4
+}
+
+.form-control {
+    color: #393939;
+    height: 42px;
+    border: 1px solid #ffffff;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+    border-radius: 4px;
+    resize: none;
+}
+
+label {
+    color: #545454;
+}
+
+.modal-content {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    box-shadow: 0 0px 0px;
+    border: 0px;
+}
+
+.btn-default {
+    color: #844EF4;
+    background-color: #ffffff;
+    border-color: #844EF4;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+}
+
+.btn-danger {
+    color: #ffffff;
+    background-color: #844AE4;
+    border-color: #844AE4;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+}
+
+.btn-danger:focus {
+    background-color: #4D21A8;
+    border-color: #4D21A8;
+}
+
+.btn-success {
+    color: #ffffff;
+    background-color: #844AE4;
+    border-color: #844AE4;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+}
+
+.btn-success:focus {
+    background-color: #4D21A8;
+    border-color: #4D21A8;
+}
+
+.btn-default:focus {
+    background-color: #fff;
+    border-color: #4d21a8;
+    color: #4d21a8;
+}
+
+.asset-title {
+    font-family: inherit;
+    font-size: 24px;
+    color: #4E4E4E;
+    letter-spacing: 0.28px;
+    line-height: 28px;
+}
+
+.info {
+    font-family: inherit;
+    font-size: 14px;
+    color: #343C41;
+    letter-spacing: 0.2px;
+    line-height: 24px;
+}
+
+.info-actions {
+    font-family: inherit;
+    font-size: 14px;
+    color: #343C41;
+    letter-spacing: 0.2px;
+    line-height: 24px;
+    padding-left: 24px;
+}
+
+.asset-properties {
+    font-family: inherit;
+    font-size: 14px;
+    color: #848484;
+    line-height: 19px;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.plus-svg {
+    color: #fff;
+    fill: currentColor;
+}
+
+.collapsible {
+    background-color: #fff;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #f5f2f0;
+  }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+/***.asset-properties:hover, .asset-properties:hover span{  
+overflow: visible;
+position: relative;
+ make readable design 
+background-color: #FFFFFF;
+border: 1px solid #FFFFFF;
+border-radius: 4px;
+padding: 3px;
+/* compensate padding and border size to avoid jerking 
+margin-left: -4px;
+}
+***/

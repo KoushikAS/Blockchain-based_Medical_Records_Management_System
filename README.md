@@ -14,9 +14,9 @@ sudo ./createPeerAdminCard.sh
 
 composer archive create -t dir -n . 
 
-sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.12.bna
+sudo composer network install --card PeerAdmin@hlfv1 --archiveFile healthcare@0.0.14.bna
 
-sudo composer network start --networkName healthcare --networkVersion 0.0.12 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+sudo composer network start --networkName healthcare --networkVersion 0.0.14 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
 
 sudo composer card import --file networkadmin.card
 
@@ -43,11 +43,36 @@ export COMPOSER_PROVIDERS='{
 
 sudo -E composer-rest-server -c admin@healthcare -n never  -m true -a true
 
+5)To start rest server in multimode (To do normal operations) (Go to healthcare folder) open a new terminal:
 
-5)To start the frontend of the app in port 4200 (Go to healthcare folder) open a new terminal:
+npm install -g passport-github  (Note: do this once )
+
+export COMPOSER_PROVIDERS='{
+  "github": {
+    "provider": "github",
+    "module": "passport-github",
+    "clientID": "4212eab9824a9f0cff32",
+    "clientSecret": "18754f39b6e95f0399f38b489e8ca91072a4edcb",
+    "authPath": "/auth/github",
+    "callbackURL": "/auth/github/callback",
+    "successRedirect": "http://localhost:4201/login",
+    "failureRedirect": "/"
+  }
+}'
+
+sudo -E composer-rest-server -c admin@healthcare -n never  -m true -a true -p 3002
+
+
+6)To start the frontend of the app in port 4200 (Go to healthcare folder) open a new terminal:
 npm install lodash  (only once)
 npm i --save-dev @types/lodash@4.14.121   (only once)
 cd healthcare-app
+npm start
+
+7)To start the frontend of the app in port 4200 (Go to healthcare folder) open a new terminal:
+npm install lodash  (only once)
+npm i --save-dev @types/lodash@4.14.121   (only once)
+cd healthcare-app-2
 npm start
 
 ---------------------------------------------------------------------------------------------------------

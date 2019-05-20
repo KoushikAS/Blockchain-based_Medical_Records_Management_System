@@ -1,0 +1,124 @@
+<div class="container">
+
+  <div class="card">
+    <div class="container1">
+      <h2>My Profile</h2>
+      <ng-container *ngFor="let participant of allParticipants">
+        <div class="row">
+          <div class="col-md-6"><strong>ID</strong></div>
+          <div class="col-md-6">{{participant.patientId}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Name</strong></div>
+          <div class="col-md-6">{{participant.firstName}}  {{participant.lastName}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Age</strong></div>
+          <div class="col-md-6">{{participant.age}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Address</strong></div>
+          <div class="col-md-6">{{participant.address}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Phone Number</strong></div>
+          <div class="col-md-6">{{participant.phNo}}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="container1">
+      <div class="row">
+        <div class="col-md-6">
+            <h2>Doctors assessing Me</h2>
+        </div>
+        <div class="col-sm-6 access" (click)="givePermission()" 
+         data-toggle="modal" data-target="#addTransactionModal">
+          Add Doctors
+        </div>
+      </div>
+      
+      <table class="table table-responsive">
+        <thead class="thead">
+          <tr class="thead-cols">
+            <th class="info">Doctor Id</th>
+            <th class="info">Doctor Name</th>
+            <th class="info">Hospital</th>
+            <th class="info">Specialisation</th>
+            <th class="info">Work Experience</th>
+            <th class="info">Contact Details</th>
+            <th class="info">Revoke Access</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let doctor of doctors" class="table table-hover">
+            <tr>
+              <td class="asset-properties">{{ doctor.doctorId }}</td>
+              <td class="asset-properties">{{ _.capitalize(doctor.firstName) }}  {{ _.capitalize(doctor.lastName) }}</td>
+              <td class="asset-properties">
+                {{ _.capitalize(doctor.hospital) }}
+              </td>
+              <td class="asset-properties">{{ _.capitalize(doctor.specialist) }}</td>
+              <td class="asset-properties">{{ doctor.workExp }}</td>
+              <td class="asset-properties">
+                {{ doctor.phNo }}
+              </td>
+              <td>
+                <div class="revoke" (click)="revokePermission(doctor.doctorId)" 
+                  data-toggle="modal" data-target="#addTransactionModal">
+                  Revoke
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 3%">
+    <div class = "container1">
+      <h2>Lets see how good I look?</h2>
+      <table class="table table-responsive">
+        <thead class="thead">
+          <tr class="thead-cols">
+            <th class="info">Doctor Id</th>
+            <th class="info">Doctor Name</th>
+            <th class="info">Medication prescribed</th>
+            <th class="info">Procedures</th>
+            <th class="info">Visit Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngIf="medAsset !== null && medAsset.pastVisitsArray">
+            <div *ngFor="let history of medAsset.pastVisitsArray" class="table table-hover">
+              <tr>
+                <td class="asset-properties">{{ history.doctorId }}</td>
+                <td class="asset-properties">{{ _.capitalize(history.doctorName) }}</td>
+                <td class="asset-properties">
+                  {{ _.capitalize(history.medicationPrescribed) }}
+                </td>
+                <td class="asset-properties">{{ _.capitalize(history.procedure) }}</td>
+                <td class="asset-properties">{{ history.visitDate  | date : 'short' }}</td>
+              </tr>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!medAsset && !medAsset.pastVisitsArray">
+            <div>
+              <a>No Data Available</a>
+            </div>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
