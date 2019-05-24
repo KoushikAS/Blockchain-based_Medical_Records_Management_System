@@ -1,0 +1,112 @@
+<div class="container">
+
+  <div class="card">
+    <div class="container1">
+      <h2>My Profile</h2>
+      <ng-container>
+        <div class="row">
+          <div class="col-md-6"><strong>ID</strong></div>
+          <div class="col-md-6">{{doctor.doctorId}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Name</strong></div>
+          <div class="col-md-6">{{doctor.firstName}} {{doctor.lastName}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Hospital</strong></div>
+          <div class="col-md-6">{{doctor.hospital}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Specialisation</strong></div>
+          <div class="col-md-6">{{doctor.specialist}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Work Experience</strong></div>
+          <div class="col-md-6">{{doctor.workExp}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6"><strong>Phone Number</strong></div>
+          <div class="col-md-6">{{doctor.phNo}}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:3%">
+    <div class="container1">
+      <h2>Patients whom I can see</h2>
+      <table class="table table1 table-responsive">
+
+        <thead class="thead">
+          <tr class="thead-cols">
+            <th class="info">Patient Id</th>
+            <th class="info">Patient Name</th>
+            <th class="info">Medication Id</th>
+            <th class="info">Medication</th>
+            <th class="info">Allergy</th>
+            <th class="info">Referenced Doctor</th>
+            <th class="info">Update Visit</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let asset of allAssets" class="table table-hover">
+            <tr class="collapsible">
+              <td class="asset-properties expand" (click)="expanded[asset.medId]=!expanded[asset.medId]">
+                {{ _.last(_.split(asset.owner, '#')) }}</td>
+              <td class="asset-properties">{{ asset.patientName }}</td>
+              <td class="asset-properties">
+                {{ _.capitalize(asset.medId) }}
+              </td>
+              <td class="asset-properties">{{ _.capitalize(asset.medication) }}</td>
+              <td class="asset-properties">{{ asset.allergy }}</td>
+              <td class="asset-properties">
+                {{ _.capitalize(_.last(asset.pastVisitsArray).doctorName) }}
+              </td>
+              <td>
+                <div class="cssCircle plusSign" id="plus" (click)="updateVisit(asset.medId)" data-toggle="modal"
+                  data-target="#addTransactionModal">
+                  &#43;
+                </div>
+              </td>
+            </tr>
+
+            <div *ngIf="expanded[asset.medId] && asset.pastVisitsArray" class="table-prop">
+              <div class="row ">
+                <div class="row">
+                  <div class="col-md-2 info"><strong>Date</strong></div>
+                  <div class="col-md-2 info"><strong>Doctor Id</strong></div>
+                  <div class="col-md-2 info"><strong>Doctor Name</strong></div>
+                  <div class="col-md-3 info"><strong>Medication</strong></div>
+                  <div class="col-md-3 info"><strong>Procedure</strong></div>
+                </div>
+                <hr>
+
+                <ng-container *ngFor="let record of allAssets[0].pastVisitsArray">
+                  <div class="row">
+                    <div class="col-md-2 asset-properties">{{ record.visitDate | date : 'short' }}</div>
+                    <div class="col-md-2 asset-properties">{{ record.doctorId }}</div>
+                    <div class="col-md-2 asset-properties">{{ record.doctorName }}</div>
+                    <div class="col-md-3 asset-properties">{{ _.capitalize(record.medicationPrescribed) }}</div>
+                    <div class="col-md-3 asset-properties">{{ _.capitalize(record.procedure) }}</div>
+                  </div>
+                <hr>
+
+                </ng-container>
+              </div>
+            </div>
+            <span *ngIf="expanded[asset.medId] && !asset.pastVisitsArray">
+              <a>No data to show!</a>
+            </span>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
