@@ -1,6 +1,15 @@
-# healthcare
+# Blockchain-based Medical Records Management System
 
-Building a healthcare network for storing medical history
+Digital Platforms for storing of medical history has become widely popular as they prove to be a
+helpful tool in storing all medical information pertaining to an individual such as x-ray’s,
+prescriptions, lab results, etc. A blockchain network, using Hyperledger Fabric, collects data of
+each patient interaction with the medical professionals. Once a patient visits a doctor, the
+prescription along with necessary observation is updated on the user’s log. The data pertains to
+health issues faced along with medical solutions and/or therapies proposed by the doctor. Thus,
+when a patient visits a doctor again, he/she can access the data readily, by either parties.
+The reason to port such an application to blockchain is to ensure that this data is immutable. This
+is due to the reason that during critical times the highly sensitive nature of the patient’s medical
+history can lead to doctors taking better and effective decisions.
 
 ---------------------------------------------------------------------------------------------------------
 To start the Application:
