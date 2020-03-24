@@ -11,6 +11,8 @@ The reason to port such an application to blockchain is to ensure that this data
 is due to the reason that during critical times the highly sensitive nature of the patient’s medical
 history can lead to doctors taking better and effective decisions.
 
+For More Information [Performance Analysis of BlockChain-based Medical Records Management System](https://ieeexplore.ieee.org/abstract/document/9016812)
+
 ---------------------------------------------------------------------------------------------------------
 To start the Application:
 
