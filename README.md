@@ -65,9 +65,6 @@ Currently, the system lacks a sign-out feature. To switch users, restart the RES
 - **REST Server (Admin)**: `https://localhost:3001`.
 - **Frontend Application**: `https://localhost:4200`.
 
-## Conclusion
-This README provides essential information to set up and use the Blockchain-based Medical Records Management System. It is designed to ensure the secure and reliable management of medical records, facilitating better healthcare services.
-
 ## Contributions
 
 This project was developed as part of an academic final year project. Contributions were made solely by Koushik Annareddy Sreenath, Bhavya Jain, Nikita Menon, and Divyansh Lohia, adhering to the project guidelines and requirements set by Ramaiah Institute of Technology.
